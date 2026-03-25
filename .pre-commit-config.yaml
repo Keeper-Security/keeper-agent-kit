@@ -1,0 +1,32 @@
+default_install_hook_types: [pre-commit, commit-msg]
+
+repos:
+  - repo: local
+    hooks:
+      # Commit message validation (Conventional Commits)
+      - id: commit-msg
+        name: Validate commit message format
+        entry: scripts/validate-commit-msg.sh
+        language: system
+        pass_filenames: true
+        stages: [commit-msg]
+
+      # Markdown formatting
+      - id: fmt
+        name: rumdl fmt (check)
+        stages: [commit]
+        language: system
+        entry: task fmt
+        pass_filenames: false
+
+  # Standard pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-yaml
+      - id: check-toml
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: [--fix=lf]

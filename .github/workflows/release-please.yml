@@ -1,0 +1,25 @@
+# Opens release PRs that update CHANGELOG.md, version.txt, and plugin versions,
+# then creates a GitHub Release (with notes from conventional commits) when merged.
+# Requires Conventional Commits on main. See CONTRIBUTING.md and release-please-config.json.
+
+name: Release Please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
