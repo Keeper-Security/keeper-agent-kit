@@ -7,7 +7,13 @@
       "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI for developer workflows",
       "version": "1.0.0",
       "author": "Keeper Security",
-      "keywords": ["secrets", "vault", "credentials", "ksm", "devops"],
+      "keywords": [
+        "secrets",
+        "vault",
+        "credentials",
+        "ksm",
+        "devops"
+      ],
       "path": "./skills/keeper-secrets"
     },
     {
@@ -16,7 +22,13 @@
       "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Commander CLI",
       "version": "1.0.0",
       "author": "Keeper Security",
-      "keywords": ["admin", "vault", "pam", "enterprise", "keeper"],
+      "keywords": [
+        "admin",
+        "vault",
+        "pam",
+        "enterprise",
+        "keeper"
+      ],
       "path": "./skills/keeper-admin"
     },
     {
@@ -25,7 +37,11 @@
       "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit",
       "version": "1.0.0",
       "author": "Keeper Security",
-      "keywords": ["setup", "install", "configuration"],
+      "keywords": [
+        "setup",
+        "install",
+        "configuration"
+      ],
       "path": "./skills/keeper-setup"
     }
   ],
