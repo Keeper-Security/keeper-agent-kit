@@ -1,0 +1,51 @@
+{
+  "action": "opened",
+  "number": 1,
+  "sender": {
+    "login": "octocat"
+  },
+  "repository": {
+    "id": 1,
+    "name": "agent-kit",
+    "full_name": "Keeper-Security/agent-kit",
+    "owner": {
+      "login": "Keeper-Security",
+      "id": 1
+    }
+  },
+  "pull_request": {
+    "number": 1,
+    "title": "feat: smoke test title for act",
+    "state": "open",
+    "user": {
+      "login": "octocat"
+    },
+    "head": {
+      "ref": "feat/act-smoke",
+      "sha": "0000000000000000000000000000000000000000",
+      "repo": {
+        "id": 2,
+        "name": "agent-kit",
+        "full_name": "Keeper-Security/agent-kit",
+        "owner": {
+          "login": "Keeper-Security"
+        }
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "0000000000000000000000000000000000000000",
+      "user": {
+        "login": "Keeper-Security"
+      },
+      "repo": {
+        "id": 1,
+        "name": "agent-kit",
+        "full_name": "Keeper-Security/agent-kit",
+        "owner": {
+          "login": "Keeper-Security"
+        }
+      }
+    }
+  }
+}

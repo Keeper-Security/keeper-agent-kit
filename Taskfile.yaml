@@ -1,0 +1,27 @@
+version: "3"
+
+tasks:
+  default:
+    desc: List all tasks
+    cmds:
+      - task --list
+
+  act:
+    desc: Run act on all workflows via scripts/act-all.sh (Docker + act)
+    cmds:
+      - ./scripts/act-all.sh
+
+  fmt:
+    desc: Format Markdown
+    cmds:
+      - rumdl check --fix .
+
+  install:
+    desc: Install dependencies
+    env:
+      BINSTALL_DISABLE_TELEMETRY: true
+      BINSTALL_NO_CONFIRM: true
+    cmds:
+      - if ! command -v cargo-binstall >/dev/null 2>&1; then curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash; fi
+      - cargo binstall rumdl prek
+      - if [ -z "${SKIP_PREK_INSTALL:-}" ]; then prek install; else echo "Skipping prek install"; fi
