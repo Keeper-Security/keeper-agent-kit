@@ -1,6 +1,6 @@
 # Security
 
-We take security seriously. This repository contains **documentation and agent skills** for Keeper’s official CLIs—not a standalone crypto implementation. Still, mistakes in docs or examples could mislead users; please report problems responsibly.
+We take security seriously. This repository contains **documentation and agent skills** for Keeper’s official CLIs-not a standalone crypto implementation. Still, mistakes in docs or examples could mislead users; please report problems responsibly.
 
 ## Supported versions
 
@@ -31,7 +31,7 @@ We will acknowledge receipt as soon as we can and coordinate disclosure after a 
 
 ## Out of scope
 
-- Vulnerabilities in Keeper’s cloud services or CLIs themselves — report those through [Keeper Security](https://keepersecurity.com/support) or the appropriate product channel  
+- Vulnerabilities in Keeper’s cloud services or CLIs themselves - report those through [Keeper Security](https://keepersecurity.com/support) or the appropriate product channel  
 - Social engineering or compromised user machines  
 
 ## Safe use reminders

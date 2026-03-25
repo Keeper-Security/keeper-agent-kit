@@ -276,11 +276,11 @@ ksm secret list --json | jq '.[] | select(.title | contains("Database")) | .uid'
 
 ## Security Best Practices
 
-1. **Never hardcode UIDs in source code** — use environment variables or config files
-2. **Always prefer notation over plaintext** — let ksm resolve at runtime
-3. **Keep notation in templates, not databases** — use `ksm interpolate` for config generation
-4. **Rotate access regularly** — follow your organization's secret rotation policy
-5. **Use `--raw` flag carefully** — shell escaping can leak secrets in error messages
+1. **Never hardcode UIDs in source code** - use environment variables or config files
+2. **Always prefer notation over plaintext** - let ksm resolve at runtime
+3. **Keep notation in templates, not databases** - use `ksm interpolate` for config generation
+4. **Rotate access regularly** - follow your organization's secret rotation policy
+5. **Use `--raw` flag carefully** - shell escaping can leak secrets in error messages
 
 ## Troubleshooting
 

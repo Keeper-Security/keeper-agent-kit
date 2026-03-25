@@ -25,11 +25,11 @@ My Vault> pam rotation create --record <RECORD_UID> \
 
 **Configuration:**
 
-- `password-length` — 8-128 characters (default: 16)
-- `include-uppercase` — A-Z (default: true)
-- `include-lowercase` — a-z (default: true)
-- `include-digits` — 0-9 (default: true)
-- `include-symbols` — !@#$%^&* (default: true)
+- `password-length` - 8-128 characters (default: 16)
+- `include-uppercase` - A-Z (default: true)
+- `include-lowercase` - a-z (default: true)
+- `include-digits` - 0-9 (default: true)
+- `include-symbols` - !@#$%^&* (default: true)
 
 ### Passphrase Rotation
 
@@ -44,9 +44,9 @@ My Vault> pam rotation create --record <RECORD_UID> \
 
 **Options:**
 
-- `passphrase-words` — 3-6 words (default: 4)
-- `passphrase-separator` — Delimiter (default: "-")
-- `passphrase-capitalize` — true/false
+- `passphrase-words` - 3-6 words (default: 4)
+- `passphrase-separator` - Delimiter (default: "-")
+- `passphrase-capitalize` - true/false
 
 **Example output:** `correct-horse-battery-staple`
 
@@ -169,11 +169,11 @@ My Vault> pam rotation status --job <JOB_ID>
 
 Status values:
 
-- `pending` — Scheduled, not started
-- `in_progress` — Currently rotating
-- `completed` — Successfully completed
-- `failed` — Failed (check error details)
-- `paused` — Manually paused
+- `pending` - Scheduled, not started
+- `in_progress` - Currently rotating
+- `completed` - Successfully completed
+- `failed` - Failed (check error details)
+- `paused` - Manually paused
 
 ### Rotation History
 
@@ -440,10 +440,10 @@ jq '.[] | {record: .record_id, schedule: .schedule, status: .status}' rotations.
 
 ### Scheduling
 
-1. **Stagger rotations** — Don't rotate all accounts simultaneously
-2. **Off-hours rotation** — Schedule during maintenance windows (2-4 AM)
-3. **No rotation on weekends** — Unless 24/7 support available
-4. **Account for time zones** — Use UTC in schedules if multi-region
+1. **Stagger rotations** - Don't rotate all accounts simultaneously
+2. **Off-hours rotation** - Schedule during maintenance windows (2-4 AM)
+3. **No rotation on weekends** - Unless 24/7 support available
+4. **Account for time zones** - Use UTC in schedules if multi-region
 
 ### Monitoring
 
@@ -457,9 +457,9 @@ My Vault> pam rotation list --status failed
 
 ### Testing
 
-1. **Test rotation process** — Don't start with production
-2. **Verify access post-rotation** — Ensure applications still work
-3. **Check logs** — Verify target system accepted rotation
+1. **Test rotation process** - Don't start with production
+2. **Verify access post-rotation** - Ensure applications still work
+3. **Check logs** - Verify target system accepted rotation
 
 ### Compliance
 

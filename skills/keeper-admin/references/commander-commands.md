@@ -201,9 +201,9 @@ My Vault> share-record -e user@company.com -a edit -u <RECORD_UID>
 
 **Actions:**
 
-- `grant` — Give access
-- `revoke` — Remove access
-- `edit` — Change to editable access
+- `grant` - Give access
+- `revoke` - Remove access
+- `edit` - Change to editable access
 
 ### share-folder
 
@@ -646,8 +646,8 @@ My Vault> audit-report --event-type "record_access"
 
 ## Exit Codes
 
-- `0` — Success
-- `1` — General error
-- `2` — Authentication error
-- `3` — Command syntax error
-- `4` — Item not found
+- `0` - Success
+- `1` - General error
+- `2` - Authentication error
+- `3` - Command syntax error
+- `4` - Item not found

@@ -8,11 +8,11 @@ KeeperPAM manages privileged accounts and access across infrastructure.
 
 **Key components:**
 
-- Gateways — Proxy access to resources
-- Configurations — Definitions of resources (servers, databases, applications)
-- Connections — Active sessions to privileged resources
-- Sessions — Recorded activity for compliance
-- Rotation — Automated password rotation
+- Gateways - Proxy access to resources
+- Configurations - Definitions of resources (servers, databases, applications)
+- Connections - Active sessions to privileged resources
+- Sessions - Recorded activity for compliance
+- Rotation - Automated password rotation
 
 ## Gateway Management
 
@@ -25,12 +25,12 @@ My Vault> pam gateway list --json
 
 **Gateway information:**
 
-- `gateway_id` — Unique identifier
-- `name` — Human-readable name
-- `host` — IP/hostname
-- `port` — Connection port
-- `status` — active, inactive, offline
-- `last_sync` — Last sync time
+- `gateway_id` - Unique identifier
+- `name` - Human-readable name
+- `host` - IP/hostname
+- `port` - Connection port
+- `status` - active, inactive, offline
+- `last_sync` - Last sync time
 
 ### Create Gateway
 
@@ -91,11 +91,11 @@ My Vault> pam configuration list --type ssh
 
 **Configuration types:**
 
-- ssh — SSH servers
-- rdp — Windows RDP
-- database — Databases (MySQL, PostgreSQL, Oracle, MSSQL)
-- application — Custom applications
-- cloud — Cloud resources (AWS, Azure, GCP)
+- ssh - SSH servers
+- rdp - Windows RDP
+- database - Databases (MySQL, PostgreSQL, Oracle, MSSQL)
+- application - Custom applications
+- cloud - Cloud resources (AWS, Azure, GCP)
 
 ### Create SSH Configuration
 
@@ -206,12 +206,12 @@ My Vault> connect --show <SESSION_ID>
 
 **Session information:**
 
-- `session_id` — Session identifier
-- `user` — User who started session
-- `resource` — Target resource name
-- `start_time` — Session start
-- `duration` — Duration in minutes
-- `status` — active, closed, failed
+- `session_id` - Session identifier
+- `user` - User who started session
+- `resource` - Target resource name
+- `start_time` - Session start
+- `duration` - Duration in minutes
+- `status` - active, closed, failed
 
 ### Monitor Session Activity
 
@@ -290,11 +290,11 @@ My Vault> pam rotation status --record <RECORD_UID>
 
 **Rotation status:**
 
-- `pending` — Scheduled but not yet started
-- `in_progress` — Rotation in process
-- `completed` — Successfully rotated
-- `failed` — Rotation failed
-- `paused` — Manually paused
+- `pending` - Scheduled but not yet started
+- `in_progress` - Rotation in process
+- `completed` - Successfully rotated
+- `failed` - Rotation failed
+- `paused` - Manually paused
 
 ### Rotation History
 

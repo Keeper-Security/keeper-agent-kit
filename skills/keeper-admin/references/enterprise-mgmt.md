@@ -49,12 +49,12 @@ My Vault> enterprise-user --list --format table
 
 **User fields in JSON:**
 
-- `user_id` — Internal user ID
-- `email` — Email address
-- `display_name` — User's name
-- `status` — active, pending, locked, deleted
-- `created` — Account creation date
-- `last_login` — Last login timestamp
+- `user_id` - Internal user ID
+- `email` - Email address
+- `display_name` - User's name
+- `status` - active, pending, locked, deleted
+- `created` - Account creation date
+- `last_login` - Last login timestamp
 
 ### Update User
 
@@ -159,10 +159,10 @@ My Vault> enterprise-role --list --json
 
 **Standard roles:**
 
-- `Owner` — Full enterprise admin
-- `Admin` — Administrative access
-- `User` — Standard user
-- `Auditor` — Read-only audit access
+- `Owner` - Full enterprise admin
+- `Admin` - Administrative access
+- `User` - Standard user
+- `Auditor` - Read-only audit access
 
 ### Assign Role to User
 

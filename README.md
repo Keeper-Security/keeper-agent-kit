@@ -1,6 +1,6 @@
 # Keeper Security Agent Kit for AI Agents
 
-Teach AI coding agents to use **Keeper Secrets Manager (KSM)** and **Keeper Commander** from the terminal: retrieve and inject secrets, manage vaults, and run enterprise admin workflows—without putting credentials in chat or source control.
+Teach AI coding agents to use **Keeper Secrets Manager (KSM)** and **Keeper Commander** from the terminal: retrieve and inject secrets, manage vaults, and run enterprise admin workflows-without putting credentials in chat or source control.
 
 ---
 
@@ -95,13 +95,13 @@ Remove the skill directories from that agent’s `skills` folder, or with Vercel
 
 ## Repository layout
 
-- `.claude-plugin/` — Claude Code plugin and marketplace metadata  
-- `skills/` — `keeper-secrets`, `keeper-admin`, `keeper-setup` plus reference markdown  
-- `TEST_PROMPTS.md` — example prompts to check that agents load the right skill  
-- `Taskfile.yaml` — dev tasks (`task fmt`, `task install`, `task act` — see [`.github/ACT.md`](.github/ACT.md))  
-- `CHANGELOG.md` — release history  
-- `version.txt` — single-line semver for the repo; **updated by release-please** when you merge its release PR (do not hand-edit for normal releases — see [CONTRIBUTING.md — Releases and changelog](CONTRIBUTING.md#releases-and-changelog))  
-- `.github/workflows/` — `validate-plugin.yml` (manifests, frontmatter, references) and `test-skills.yml` (skill trigger patterns)  
+- `.claude-plugin/` - Claude Code plugin and marketplace metadata  
+- `skills/` - `keeper-secrets`, `keeper-admin`, `keeper-setup` plus reference markdown  
+- `TEST_PROMPTS.md` - example prompts to check that agents load the right skill  
+- `Taskfile.yaml` - dev tasks (`task fmt`, `task install`, `task act` - see [`.github/ACT.md`](.github/ACT.md))  
+- `CHANGELOG.md` - release history  
+- `version.txt` - single-line semver for the repo; **updated by release-please** when you merge its release PR (do not hand-edit for normal releases - see [CONTRIBUTING.md - Releases and changelog](CONTRIBUTING.md#releases-and-changelog))  
+- `.github/workflows/` - `validate-plugin.yml` (manifests, frontmatter, references) and `test-skills.yml` (skill trigger patterns)  
 
 CI validates manifests, skill frontmatter, and documentation structure on pushes and PRs.
 
@@ -111,9 +111,9 @@ CI validates manifests, skill frontmatter, and documentation structure on pushes
 
 **Keeper (install, configure, command reference):**
 
-- [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) — install, profiles, commands  
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) — install, shell, admin commands  
-- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) — `keeper://` references for secrets  
+- [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - install, profiles, commands  
+- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - install, shell, admin commands  
+- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` references for secrets  
 
 **This repo:** After the CLIs are installed and authenticated, use each skill’s `SKILL.md` and `skills/*/references/*.md` for agent-oriented patterns (e.g. `ksm exec`, Docker/Kubernetes, CI, Commander admin).
 
@@ -123,14 +123,14 @@ CI validates manifests, skill frontmatter, and documentation structure on pushes
 
 The **[Keeper Security](https://keepersecurity.com)** agent kit is documentation for agents: it should **not** encourage pasting secrets into chat. Operations use Keeper’s authentication and OS-backed storage where configured.
 
-- [SECURITY.md](SECURITY.md) — how to report vulnerabilities  
+- [SECURITY.md](SECURITY.md) - how to report vulnerabilities  
 - Design notes: avoid logging secrets; use one-time tokens and least privilege for KSM apps  
 
 ---
 
 ## Supported agents
 
-Works with many agents via the Vercel Skills CLI (Claude Code, Cursor, Codex, Copilot, Windsurf, Roo Code, Gemini CLI, and others—see upstream docs for the current list).
+Works with many agents via the Vercel Skills CLI (Claude Code, Cursor, Codex, Copilot, Windsurf, Roo Code, Gemini CLI, and others-see upstream docs for the current list).
 
 ---
 

@@ -33,4 +33,4 @@ assignees: []
 
 ## Additional context
 
-<!-- Logs, screenshots, links — do not paste secrets, tokens, or real record UIDs -->
+<!-- Logs, screenshots, links - do not paste secrets, tokens, or real record UIDs -->

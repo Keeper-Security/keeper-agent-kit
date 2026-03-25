@@ -12,8 +12,8 @@ breadth of vault, enterprise, and PAM operations.
 
 ## Official documentation
 
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) — overview, installation, and shell usage
-- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) — creating KSM Applications and Client Devices that `ksm` uses; runtime secret injection belongs in the **keeper-secrets** skill
+- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - overview, installation, and shell usage
+- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - creating KSM Applications and Client Devices that `ksm` uses; runtime secret injection belongs in the **keeper-secrets** skill
 
 ## When to Use Commander vs KSM
 
@@ -27,8 +27,8 @@ breadth of vault, enterprise, and PAM operations.
 | Interactive vault browsing | `keeper` |
 | Run as REST API service | `keeper` |
 | Compliance reporting and audit | `keeper` |
-| Retrieve secrets for an app at runtime | Use `ksm` — see keeper-secrets skill |
-| Inject secrets into env vars / config files | Use `ksm` — see keeper-secrets skill |
+| Retrieve secrets for an app at runtime | Use `ksm` - see keeper-secrets skill |
+| Inject secrets into env vars / config files | Use `ksm` - see keeper-secrets skill |
 
 ## Prerequisites
 
@@ -199,12 +199,12 @@ echo "list" | keeper --batch-mode --user admin@co.com
 
 - NEVER expose the user's master password in logs, chat, or code.
 - NEVER print secret field values into chat unless explicitly requested for
-  a specific debugging purpose — and warn the user first.
+  a specific debugging purpose - and warn the user first.
 - For destructive operations (delete user, delete record, modify role
   enforcement), always confirm with the user before executing.
 - If the user needs runtime secret injection for an application, redirect
   them to the keeper-secrets skill and KSM CLI.
-- Commander requires a full user login — it cannot be used in headless
+- Commander requires a full user login - it cannot be used in headless
   environments without persistent login configured.
 
 For detailed command reference, read `references/commander-commands.md`. For `keeper://` URIs and `ksm exec` / `ksm interpolate`, see [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) and the **keeper-secrets** skill.

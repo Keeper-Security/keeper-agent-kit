@@ -3,7 +3,7 @@
 #
 # validate-plugin + test-skills must succeed (same as GitHub push CI).
 # semantic-pull-request and release-please call the GitHub API; act usually
-# cannot complete those jobs locally — we still run them to exercise YAML and
+# cannot complete those jobs locally - we still run them to exercise YAML and
 # container setup; non-zero exit is expected and does not fail this script.
 
 set -euo pipefail

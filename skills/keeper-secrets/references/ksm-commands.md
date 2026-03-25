@@ -43,12 +43,12 @@ ksm profile init --token "US:XXXXXXXXXX" --ini-file /etc/keeper/config.ini
 
 **Options:**
 
-- `--token <token>` — One-Time Access Token (required)
-- `--profile <name>` — Profile name (default: 'default')
-- `--hostname <host>` — Keeper host (keepersecurity.com, keepersecurity.eu, etc.)
-- `--ini-file <path>` — Path to config file (default: ~/.keeper/keeper.ini)
-- `--private-key <path>` — Private key file path
-- `--skip-keyring` — Don't use OS keyring, use keeper.ini instead
+- `--token <token>` - One-Time Access Token (required)
+- `--profile <name>` - Profile name (default: 'default')
+- `--hostname <host>` - Keeper host (keepersecurity.com, keepersecurity.eu, etc.)
+- `--ini-file <path>` - Path to config file (default: ~/.keeper/keeper.ini)
+- `--private-key <path>` - Private key file path
+- `--skip-keyring` - Don't use OS keyring, use keeper.ini instead
 
 ### profile list
 
@@ -79,8 +79,8 @@ ksm profile update --hostname keepersecurity.com.au
 
 **Options:**
 
-- `--profile <name>` — Profile to update
-- `--hostname <host>` — Update Keeper host
+- `--profile <name>` - Profile to update
+- `--hostname <host>` - Update Keeper host
 
 ### profile delete
 
@@ -92,8 +92,8 @@ ksm profile delete --profile staging
 
 **Options:**
 
-- `--profile <name>` — Profile to delete
-- `--force` — Don't prompt for confirmation
+- `--profile <name>` - Profile to delete
+- `--force` - Don't prompt for confirmation
 
 ## Secret Commands
 
@@ -119,11 +119,11 @@ SNzjw8tM1HsXEzXERCJrNQ login                Stripe API Key
 
 **Options:**
 
-- `--profile <name>` — Use specific profile
-- `--json` — Output as JSON
-- `--folder-uid <uid>` — Filter by folder
-- `--exclude-folders <uids>` — Exclude folder UIDs
-- `--format <format>` — Output format (json, csv, table)
+- `--profile <name>` - Use specific profile
+- `--json` - Output as JSON
+- `--folder-uid <uid>` - Filter by folder
+- `--exclude-folders <uids>` - Exclude folder UIDs
+- `--format <format>` - Output format (json, csv, table)
 
 ### secret get
 
@@ -152,23 +152,23 @@ ksm secret get keeper://SNzjw8tM1HsXEzXERCJrNQ/field/password
 
 **Options:**
 
-- `-u, --uid <uid>` — Record UID
-- `-t, --title <title>` — Record title (searches by exact match)
-- `-f, --field <field>` — Field type (password, login, url, host, port, etc.)
-- `--custom-field <label>` — Get custom field by label
-- `--json` — Output full record as JSON
-- `-q, --query <jsonpath>` — JSONPath query on JSON output
-- `--raw` — Raw output without quotes or escaping
-- `--profile <name>` — Use specific profile
+- `-u, --uid <uid>` - Record UID
+- `-t, --title <title>` - Record title (searches by exact match)
+- `-f, --field <field>` - Field type (password, login, url, host, port, etc.)
+- `--custom-field <label>` - Get custom field by label
+- `--json` - Output full record as JSON
+- `-q, --query <jsonpath>` - JSONPath query on JSON output
+- `--raw` - Raw output without quotes or escaping
+- `--profile <name>` - Use specific profile
 
 **Standard Field Types:**
 
-- `login` — Username/login field
-- `password` — Password field
-- `url` — Website URL
-- `host` — Server host/IP
-- `port` — Port number
-- `domain` — Domain name
+- `login` - Username/login field
+- `password` - Password field
+- `url` - Website URL
+- `host` - Server host/IP
+- `port` - Port number
+- `domain` - Domain name
 
 ### secret add
 
@@ -195,14 +195,14 @@ ksm secret add field --record-type login --title "Custom" \
 
 **Options:**
 
-- `editor` — Use interactive editor (default)
-- `field` — Add from command-line
-- `--record-type <type>` — Record type (login, bankAccount, address, etc.)
-- `--title <title>` — Record title (required)
-- `--field <key=value>` — Standard field (repeatable)
-- `--custom-field <label=value>` — Custom field (repeatable)
-- `--folder-uid <uid>` — Target folder
-- `--profile <name>` — Use specific profile
+- `editor` - Use interactive editor (default)
+- `field` - Add from command-line
+- `--record-type <type>` - Record type (login, bankAccount, address, etc.)
+- `--title <title>` - Record title (required)
+- `--field <key=value>` - Standard field (repeatable)
+- `--custom-field <label=value>` - Custom field (repeatable)
+- `--folder-uid <uid>` - Target folder
+- `--profile <name>` - Use specific profile
 
 ### secret update
 
@@ -227,11 +227,11 @@ ksm secret update -t "API Key" --field "password=rotated"
 
 **Options:**
 
-- `-u, --uid <uid>` — Record UID
-- `-t, --title <title>` — Record title
-- `--field <key=value>` — Update standard field (repeatable)
-- `--custom-field <label=value>` — Update custom field (repeatable)
-- `--profile <name>` — Use specific profile
+- `-u, --uid <uid>` - Record UID
+- `-t, --title <title>` - Record title
+- `--field <key=value>` - Update standard field (repeatable)
+- `--custom-field <label=value>` - Update custom field (repeatable)
+- `--profile <name>` - Use specific profile
 
 ### secret delete
 
@@ -245,10 +245,10 @@ ksm secret delete -u SNzjw8tM1HsXEzXERCJrNQ --force  # No confirmation
 
 **Options:**
 
-- `-u, --uid <uid>` — Record UID
-- `-t, --title <title>` — Record title
-- `--force` — Don't prompt for confirmation
-- `--profile <name>` — Use specific profile
+- `-u, --uid <uid>` - Record UID
+- `-t, --title <title>` - Record title
+- `--force` - Don't prompt for confirmation
+- `--profile <name>` - Use specific profile
 
 ### secret password
 
@@ -270,13 +270,13 @@ ksm secret password --count 5 --length 20
 
 **Options:**
 
-- `--length <n>` — Total password length (default: 16)
-- `--lc <n>` — Lowercase letters (default: random mix)
-- `--uc <n>` — Uppercase letters
-- `-d, --digits <n>` — Digits
-- `-s, --symbols <n>` — Special characters
-- `--count <n>` — Generate N passwords
-- `--exclude <chars>` — Exclude specific characters
+- `--length <n>` - Total password length (default: 16)
+- `--lc <n>` - Lowercase letters (default: random mix)
+- `--uc <n>` - Uppercase letters
+- `-d, --digits <n>` - Digits
+- `-s, --symbols <n>` - Special characters
+- `--count <n>` - Generate N passwords
+- `--exclude <chars>` - Exclude specific characters
 
 ## Folder Commands
 
@@ -300,7 +300,7 @@ ksm folder get -u <FOLDER_UID> --json
 
 **Options:**
 
-- `-u, --uid <uid>` — Folder UID
+- `-u, --uid <uid>` - Folder UID
 
 ## Execution Commands
 
@@ -337,7 +337,7 @@ docker run -e DB_PASS="keeper://UID/field/password" \
 
 **Options:**
 
-- `--profile <name>` — Use specific profile
+- `--profile <name>` - Use specific profile
 - Additional args are the command to execute
 
 ### interpolate
@@ -367,10 +367,10 @@ database:
 
 **Options:**
 
-- `--in-file <path>` — Template file to read
-- `--out-file <path>` — Output file
-- `--backup` — Create .backup of original
-- `--profile <name>` — Use specific profile
+- `--in-file <path>` - Template file to read
+- `--out-file <path>` - Output file
+- `--backup` - Create .backup of original
+- `--profile <name>` - Use specific profile
 
 ## Sync Commands
 
@@ -397,11 +397,11 @@ ksm sync --type generic_http \
 
 **Options:**
 
-- `--type <type>` — Target type (aws_sm, azure_kv, generic_http)
-- `--credentials <uid>` — Record with cloud credentials
-- `--map <keeper_uid>=<target_name>` — Secret mappings (repeatable)
-- `--dry-run` — Show what would sync without doing it
-- `--profile <name>` — Use specific profile
+- `--type <type>` - Target type (aws_sm, azure_kv, generic_http)
+- `--credentials <uid>` - Record with cloud credentials
+- `--map <keeper_uid>=<target_name>` - Secret mappings (repeatable)
+- `--dry-run` - Show what would sync without doing it
+- `--profile <name>` - Use specific profile
 
 ## Configuration
 
@@ -427,11 +427,11 @@ client_id = <client-id>
 
 ### Environment Variables
 
-- `KSM_TOKEN` — One-Time Access Token for auto-init
-- `KSM_CONFIG` — Base64-encoded config (replaces keeper.ini)
-- `KSM_CONFIG_FILE` — Path to keeper.ini
-- `KSM_HOSTNAME` — Override keeper host
-- `KSM_PROFILE` — Active profile name
+- `KSM_TOKEN` - One-Time Access Token for auto-init
+- `KSM_CONFIG` - Base64-encoded config (replaces keeper.ini)
+- `KSM_CONFIG_FILE` - Path to keeper.ini
+- `KSM_HOSTNAME` - Override keeper host
+- `KSM_PROFILE` - Active profile name
 
 ## Error Handling
 
@@ -445,11 +445,11 @@ client_id = <client-id>
 
 ## Exit Codes
 
-- `0` — Success
-- `1` — General error
-- `2` — Authentication error
-- `3` — Invalid arguments
-- `4` — Record not found
+- `0` - Success
+- `1` - General error
+- `2` - Authentication error
+- `3` - Invalid arguments
+- `4` - Record not found
 
 ## Common Workflows
 

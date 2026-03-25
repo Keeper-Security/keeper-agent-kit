@@ -571,10 +571,10 @@ ksm interpolate --in-file config.keeper.yaml --out-file config.yaml
 
 ## Best Practices
 
-1. **Use environment variables** — Better than hardcoding UIDs in code
-2. **Keep templates in git** — `.keeper.yaml`, `.env.keeper` safe to commit
-3. **Never commit resolved configs** — `.env.local`, `config.yaml` in `.gitignore`
-4. **One profile per env** — Separate production, staging, dev profiles
-5. **Validate at startup** — Test KSM access with `ksm secret list` in init
-6. **Log resolution** — Add debug output to verify secrets are resolving
-7. **Handle failures gracefully** — `ksm exec` returns non-zero on auth failure
+1. **Use environment variables** - Better than hardcoding UIDs in code
+2. **Keep templates in git** - `.keeper.yaml`, `.env.keeper` safe to commit
+3. **Never commit resolved configs** - `.env.local`, `config.yaml` in `.gitignore`
+4. **One profile per env** - Separate production, staging, dev profiles
+5. **Validate at startup** - Test KSM access with `ksm secret list` in init
+6. **Log resolution** - Add debug output to verify secrets are resolving
+7. **Handle failures gracefully** - `ksm exec` returns non-zero on auth failure

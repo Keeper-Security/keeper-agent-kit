@@ -73,8 +73,8 @@ This repo is Markdown-only (no build step for the skills themselves). To run the
 
 ### Required: Task and Cargo
 
-1. **[Task](https://taskfile.dev/installation/)** — install the `task` CLI so you can run tasks from [`Taskfile.yaml`](Taskfile.yaml) (`task fmt`, `task install`, etc.).
-2. **[Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)** — required because `task install` uses [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) to pull prebuilt binaries (e.g. [rumdl](https://github.com/rvben/rumdl)).
+1. **[Task](https://taskfile.dev/installation/)** - install the `task` CLI so you can run tasks from [`Taskfile.yaml`](Taskfile.yaml) (`task fmt`, `task install`, etc.).
+2. **[Rust and Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)** - required because `task install` uses [cargo-binstall](https://github.com/cargo-bins/cargo-binstall) to pull prebuilt binaries (e.g. [rumdl](https://github.com/rvben/rumdl)).
 
 Then clone and install dev tools:
 
@@ -113,9 +113,9 @@ Pull requests are checked by **Semantic PR** (`.github/workflows/semantic-pull-r
 
 #### `version.txt` (how the version is updated)
 
-- **Role** — One line, semver only (e.g. `1.2.3`). With **`release-type: simple`** in `release-please-config.json`, this file is the **canonical project version** release-please reads and writes.
-- **Normal workflow** — **Do not** edit `version.txt` by hand to ship a release. Land conventional commits on `main`, let release-please open its **release PR**, review it, and **merge that PR**. The PR updates `version.txt` together with `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in `.claude-plugin/plugin.json` and `marketplace.json` (see `extra-files` in `release-please-config.json`).
-- **Avoid drift** — If you ever change a version **outside** that flow (unusual), update **every** file release-please keeps in sync so they all match; mismatches break automation and CI expectations.
+- **Role** - One line, semver only (e.g. `1.2.3`). With **`release-type: simple`** in `release-please-config.json`, this file is the **canonical project version** release-please reads and writes.
+- **Normal workflow** - **Do not** edit `version.txt` by hand to ship a release. Land conventional commits on `main`, let release-please open its **release PR**, review it, and **merge that PR**. The PR updates `version.txt` together with `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in `.claude-plugin/plugin.json` and `marketplace.json` (see `extra-files` in `release-please-config.json`).
+- **Avoid drift** - If you ever change a version **outside** that flow (unusual), update **every** file release-please keeps in sync so they all match; mismatches break automation and CI expectations.
 
 ### Optional: run CI workflows locally with [act](https://github.com/nektos/act)
 
@@ -276,30 +276,30 @@ ksm secret list
 
 Focus on:
 
-- **When to use** — Clarify skill purpose and when agent should use it
-- **Prerequisites** — What users need before using
-- **Core concepts** — Key ideas explained simply
-- **Common patterns** — Most used workflows
-- **Guardrails** — Security and safety guidelines
+- **When to use** - Clarify skill purpose and when agent should use it
+- **Prerequisites** - What users need before using
+- **Core concepts** - Key ideas explained simply
+- **Common patterns** - Most used workflows
+- **Guardrails** - Security and safety guidelines
 
 ### Reference Files
 
 Focus on:
 
-- **Complete reference** — All commands and options
-- **Examples** — Real-world usage patterns
-- **Troubleshooting** — Common issues and solutions
-- **Best practices** — Recommended approaches
+- **Complete reference** - All commands and options
+- **Examples** - Real-world usage patterns
+- **Troubleshooting** - Common issues and solutions
+- **Best practices** - Recommended approaches
 
 ## Versioning
 
-**Plugin / repo version** — [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in **`.claude-plugin/plugin.json`** and **`.claude-plugin/marketplace.json`** (see `release-please-config.json` → `extra-files`). It does **not** bump per-skill versions; skills under `skills/` ship as part of that plugin release.
+**Plugin / repo version** - [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in **`.claude-plugin/plugin.json`** and **`.claude-plugin/marketplace.json`** (see `release-please-config.json` → `extra-files`). It does **not** bump per-skill versions; skills under `skills/` ship as part of that plugin release.
 
 **Change significance** (for commit messages and changelog tone; not separate skill semver in this repo):
 
-- **MAJOR** — Breaking changes to command syntax or CLI
-- **MINOR** — New features, new commands, additions
-- **PATCH** — Documentation fixes, clarifications, typos
+- **MAJOR** - Breaking changes to command syntax or CLI
+- **MINOR** - New features, new commands, additions
+- **PATCH** - Documentation fixes, clarifications, typos
 
 ## License
 

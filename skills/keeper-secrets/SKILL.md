@@ -6,13 +6,13 @@ description: Retrieve, inject, and manage secrets from Keeper Vault using KSM CL
 # Keeper Secrets Manager CLI (ksm)
 
 The KSM CLI is Keeper's machine-oriented secrets management tool. It retrieves
-secrets from the Keeper Vault without requiring a full user login — it uses
+secrets from the Keeper Vault without requiring a full user login - it uses
 Application + Client Device authentication with one-time access tokens.
 
 ## Official documentation
 
-- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) — overview, installation, and configuration
-- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) — `keeper://` URI syntax for fields, custom fields, and files
+- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - overview, installation, and configuration
+- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` URI syntax for fields, custom fields, and files
 
 ## When to Use KSM vs Commander
 
@@ -25,9 +25,9 @@ Application + Client Device authentication with one-time access tokens.
 | Create or update secret records | `ksm secret add` / `ksm secret update` |
 | Sync secrets to AWS/Azure secret stores | `ksm sync` |
 | Generate secure passwords | `ksm secret password` |
-| Admin tasks (users, teams, roles, SSO) | Use `keeper` (Commander) — see keeper-admin skill |
-| Create KSM Applications or Client Devices | Use `keeper` (Commander) — see keeper-admin skill |
-| Manage PAM resources or rotation | Use `keeper` (Commander) — see keeper-admin skill |
+| Admin tasks (users, teams, roles, SSO) | Use `keeper` (Commander) - see keeper-admin skill |
+| Create KSM Applications or Client Devices | Use `keeper` (Commander) - see keeper-admin skill |
+| Manage PAM resources or rotation | Use `keeper` (Commander) - see keeper-admin skill |
 
 ## Prerequisites
 
@@ -249,7 +249,7 @@ kubectl create secret generic ksm-config \
 pip install keeper-secrets-manager-cli[keyring]
 ksm profile init --token "XX:XXXXXXXXXX"
 
-# Daily use — run your app with secrets injected
+# Daily use - run your app with secrets injected
 DB_URL="keeper://<UID>/field/url" \
 API_KEY="keeper://<UID>/field/password" \
 ksm exec -- npm run dev

@@ -2,4 +2,4 @@ blank_issues_enabled: true
 contact_links:
   - name: Keeper Security product support
     url: https://keepersecurity.com/support
-    about: Account, vault, KSM, or Commander product issues — use official support, not this repo.
+    about: Account, vault, KSM, or Commander product issues - use official support, not this repo.

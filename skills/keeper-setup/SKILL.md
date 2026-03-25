@@ -7,9 +7,9 @@ description: Install and configure Keeper CLI tools (KSM CLI and Commander) for 
 
 ## Official documentation
 
-- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) — concepts, KSM CLI install, and app/device setup
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) — concepts, install, and interactive shell
-- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) — `keeper://` URIs used by `ksm exec` and `ksm interpolate` (see **keeper-secrets** skill for usage)
+- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - concepts, KSM CLI install, and app/device setup
+- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - concepts, install, and interactive shell
+- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` URIs used by `ksm exec` and `ksm interpolate` (see **keeper-secrets** skill for usage)
 
 Keeper provides two CLI tools. Install what you need:
 

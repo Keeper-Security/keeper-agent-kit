@@ -215,19 +215,19 @@ These scenarios might involve multiple skills:
 
 ## Negative Test Cases
 
-Use these to check that the agent does **not** treat every message as a CLI task. **Important:** Our skills’ descriptions tell the model to use them when the user mentions **Keeper**, `ksm`, `keeper`, etc. Prompts that include those words may still load a skill even when the user is asking for docs, pricing, or integrations—so “negative” here means *no **operational** CLI workflow*, not *no Keeper-related reply*. For a stricter “no skill” test, use prompts with **no** Keeper vocabulary (e.g. weather, generic Python).
+Use these to check that the agent does **not** treat every message as a CLI task. **Important:** Our skills’ descriptions tell the model to use them when the user mentions **Keeper**, `ksm`, `keeper`, etc. Prompts that include those words may still load a skill even when the user is asking for docs, pricing, or integrations-so “negative” here means *no **operational** CLI workflow*, not *no Keeper-related reply*. For a stricter “no skill” test, use prompts with **no** Keeper vocabulary (e.g. weather, generic Python).
 
-1. **"What's the weather today?"** — No Keeper context; strong negative for skill routing.
+1. **"What's the weather today?"** - No Keeper context; strong negative for skill routing.
 
-2. **"I'm using a different password manager, what's the best approach?"** — Third-party tool; should not assume Keeper CLIs.
+2. **"I'm using a different password manager, what's the best approach?"** - Third-party tool; should not assume Keeper CLIs.
 
-3. **"What features does the enterprise plan include?"** — Product/sales; not a CLI how-to.
+3. **"What features does the enterprise plan include?"** - Product/sales; not a CLI how-to.
 
-4. **"What's the Keeper API rate limit?"** — May still attach a Keeper skill because of the word *Keeper*; expect **general** or docs-style answer, not `ksm`/`keeper` command sequences.
+4. **"What's the Keeper API rate limit?"** - May still attach a Keeper skill because of the word *Keeper*; expect **general** or docs-style answer, not `ksm`/`keeper` command sequences.
 
-5. **"How do I backup my personal vault?"** — May reasonably route to **keeper-admin** (export/backup flows) or stay generic; **not** a reliable “no skill” case.
+5. **"How do I backup my personal vault?"** - May reasonably route to **keeper-admin** (export/backup flows) or stay generic; **not** a reliable “no skill” case.
 
-6. **"Can Keeper integrate with my existing tools?"** — Broad product question; same caveat as (4) if the agent mentions Keeper skills.
+6. **"Can Keeper integrate with my existing tools?"** - Broad product question; same caveat as (4) if the agent mentions Keeper skills.
 
 ## Running Tests
 
