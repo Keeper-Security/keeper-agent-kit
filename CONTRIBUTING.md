@@ -29,7 +29,7 @@ Found a bug? Have a feature request?
 Skills and reference docs are always being improved.
 
 1. Fork the repository
-2. Edit files in `skills/*/` or reference documentation
+2. Edit files in `plugin/*/skills/*/` or reference documentation
 3. Ensure frontmatter is correct (see below)
 4. Test readability and formatting
 5. Submit pull request with clear description
@@ -138,7 +138,7 @@ Each skill file must:
 
 ```bash
 # Check frontmatter
-cat skills/keeper-secrets/SKILL.md | head -20
+cat plugins/keeper-secrets/skills/keeper-secrets/SKILL.md | head -20
 
 # Verify markdown (using your editor)
 # - Headings are hierarchical (##, ###, not ###, ##)
@@ -166,7 +166,7 @@ After making changes, test that the Keeper Security agent kit loads:
 
 ```bash
 # Claude Code
-cp -r skills/keeper-* ~/.claude/skills/
+cp -r plugins/*/skills/* ~/.claude/skills/
 ls ~/.claude/skills/keeper-*/SKILL.md
 
 # Should list three files:
@@ -295,7 +295,7 @@ Focus on:
 
 ## Versioning
 
-**Plugin / repo version** - [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, **`.claude-plugin/plugin.json`**, **`.claude-plugin/marketplace.json`** (`metadata.version` and each listed plugin’s `version`), **`.cursor-plugin/marketplace.json`** (`metadata.version`), **`plugins/**/.cursor-plugin/plugin.json`**, and the **docs/example** block in **`docs/add-a-plugin.md`** (see `release-please-config.json` → `extra-files`). CI runs **`scripts/verify-repo-versions.py`** to ensure `version.txt` matches those files. It does **not** bump per-skill versions; skills under `skills/` ship as part of that plugin release.
+**Plugin / repo version** - [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, **`.claude-plugin/plugin.json`**, **`.claude-plugin/marketplace.json`** (`metadata.version` and each listed plugin’s `version`), **`.cursor-plugin/marketplace.json`** (`metadata.version`), **`plugins/**/.cursor-plugin/plugin.json`**, and the **docs/example** block in **`docs/add-a-plugin.md`** (see `release-please-config.json` → `extra-files`). CI runs **`scripts/verify-repo-versions.py`** to ensure `version.txt` matches those files. It does **not** bump per-skill versions; skills under `plugins/*/skills/*` ship as part of that plugin release.
 
 **Change significance** (for commit messages and changelog tone; not separate skill semver in this repo):
 

@@ -99,22 +99,18 @@ Remove the skill directories from that agent’s `skills` folder, or with Vercel
 
 ## Documentation
 
-**Keeper (install, configure, command reference):**
-
-- [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - install, profiles, commands  
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - install, shell, admin commands  
-- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` references for secrets  
+- **[KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview)** - install, profiles, commands  
+- **[Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview)** - install, shell, admin commands  
+- **[Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation)** - `keeper://` references for secrets  
+- **[Issues & features](https://github.com/Keeper-Security/keeper-agent-kit/issues)**
+- **[Keeper Security Support](https://keepersecurity.com/support)**
+- **[Docs](https://docs.keeper.io)**
 
 ---
 
 ## Security
 
-The **[Keeper Security](https://keepersecurity.com)** agent kit is documentation for agents: it should **not** encourage pasting secrets into chat. Operations use Keeper’s authentication and OS-backed storage where configured.
-
-- [SECURITY.md](SECURITY.md) - how to report vulnerabilities  
-- Design notes: avoid logging secrets; use one-time tokens and least privilege for KSM apps  
-
----
+Security is a top priority. The **[SECURITY.md](SECURITY.md)** file contains information on how to report vulnerabilities.
 
 ## Contributing
 
@@ -124,20 +120,8 @@ We welcome issues and pull requests.
 2. For changes: fork, branch, keep edits focused; follow [CONTRIBUTING.md](CONTRIBUTING.md).
 3. Pull requests should describe **what** changed and **why**, and note how you tested.
 
-Details: **[CONTRIBUTING.md](CONTRIBUTING.md)** (code of conduct, docs standards, PR checklist).
-
 ---
 
 ## License
 
-Licensed under the **Apache License, Version 2.0**. You may use, modify, and distribute this project under those terms.
-
-Full text: **[LICENSE](LICENSE.md)**.
-
----
-
-## Support
-
-- **Issues & features:** [github.com/Keeper-Security/keeper-agent-kit/issues](https://github.com/Keeper-Security/keeper-agent-kit/issues)  
-- **Keeper Security Support:** [keepersecurity.com/support](https://keepersecurity.com/support)  
-- **Docs:** [docs.keeper.io](https://docs.keeper.io)  
+Licensed is provided in the **[LICENSE](LICENSE.md)** file.
