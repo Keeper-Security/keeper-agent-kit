@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Run act against every workflow under .github/workflows (local CI smoke test).
+# Run act against GitHub Actions workflows (local smoke test).
 #
-# validate-plugin + test-skills must succeed (same as GitHub push CI).
+# Plugin validation runs via pre-commit locally (`task validate`);
+# this script runs it first so act matches "full local check" expectations.
 # semantic-pull-request and release-please call the GitHub API; act usually
 # cannot complete those jobs locally - we still run them to exercise YAML and
 # container setup; non-zero exit is expected and does not fail this script.
@@ -20,9 +21,8 @@ run_list_push() {
   act push -W ".github/workflows/${wf}"
 }
 
-echo "=== Workflows: validate-plugin, test-skills (must pass locally) ==="
-run_list_push validate-plugin.yml
-run_list_push test-skills.yml
+echo "=== Plugin validation (pre-commit plugin-ci / task validate) — must pass locally ==="
+task validate
 
 echo ""
 echo "=== Workflow: semantic-pull-request (pull_request; GitHub API required for success) ==="
@@ -53,4 +53,4 @@ if [[ "${rp}" -ne 0 ]]; then
 fi
 
 echo ""
-echo "=== act run finished (validate-plugin + test-skills passed above) ==="
+echo "=== act run finished (plugin validation + act smoke tests above) ==="

@@ -1,5 +1,3 @@
-# Pull request
-
 ## Summary
 
 <!-- What does this PR change and why? -->
@@ -13,6 +11,6 @@
 <!-- Check what applies -->
 
 - [ ] Documentation (skills, references, README, etc.)
-- [ ] Plugin / marketplace metadata (`.claude-plugin/`)
+- [ ] Plugin / marketplace metadata (`.claude-plugin/`or `.cursor-plugin/`)
 - [ ] CI / tooling (workflows, hooks, Taskfile)
 - [ ] Other (describe below)

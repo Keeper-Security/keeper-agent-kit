@@ -25,3 +25,8 @@ tasks:
       - if ! command -v cargo-binstall >/dev/null 2>&1; then curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash; fi
       - cargo binstall rumdl prek
       - if [ -z "${SKIP_PREK_INSTALL:-}" ]; then prek install; else echo "Skipping prek install"; fi
+
+  validate:
+    desc: Run full validation on plugins
+    cmds:
+      - ./scripts/validate-plugins.sh

@@ -35,10 +35,8 @@ Pick **one** path. Official paths may require the plugin to be listed in each ma
 
 ```bash
 /plugin marketplace add Keeper-Security/agent-kit
-/plugin install keeper-security@keeper-security
+/plugin install keeper-secrets@keeper-security
 ```
-
-You can also install individual plugins if your marketplace lists them separately (e.g. `keeper-secrets@keeper-security`, `keeper-admin@keeper-security`, `keeper-setup@keeper-security`).
 
 ### Any agent (Vercel Skills CLI)
 
@@ -67,14 +65,13 @@ cd agent-kit
 | Claude Code | `~/.claude/skills/` |
 | Cursor | `~/.cursor/skills/` |
 | Codex | `~/.codex/skills/` |
-| GitHub Copilot | `~/.github-copilot/extensions/skills/` |
-| Windsurf / Roo Code | `~/.windsurf/skills/` (adjust per product docs) |
+| GitHub Copilot | `~/.github/skills/` |
 
 ```bash
-mkdir -p ~/.claude/skills   # example: Claude Code
+# example: Claude Code
+mkdir -p ~/.claude/skills
 cp -r skills/keeper-secrets skills/keeper-admin skills/keeper-setup ~/.claude/skills/
 ls ~/.claude/skills/
-# expect: keeper-secrets  keeper-admin  keeper-setup
 ```
 
 Repeat for each agent you use; paths differ per product.
@@ -93,20 +90,6 @@ Remove the skill directories from that agent’s `skills` folder, or with Vercel
 
 ---
 
-## Repository layout
-
-- `.claude-plugin/` - Claude Code plugin and marketplace metadata  
-- `skills/` - `keeper-secrets`, `keeper-admin`, `keeper-setup` plus reference markdown  
-- `TEST_PROMPTS.md` - example prompts to check that agents load the right skill  
-- `Taskfile.yaml` - dev tasks (`task fmt`, `task install`, `task act` - see [`.github/ACT.md`](.github/ACT.md))  
-- `CHANGELOG.md` - release history  
-- `version.txt` - single-line semver for the repo; **updated by release-please** when you merge its release PR (do not hand-edit for normal releases - see [CONTRIBUTING.md - Releases and changelog](CONTRIBUTING.md#releases-and-changelog))  
-- `.github/workflows/` - `validate-plugin.yml` (manifests, frontmatter, references) and `test-skills.yml` (skill trigger patterns)  
-
-CI validates manifests, skill frontmatter, and documentation structure on pushes and PRs.
-
----
-
 ## Documentation
 
 **Keeper (install, configure, command reference):**
@@ -114,8 +97,6 @@ CI validates manifests, skill frontmatter, and documentation structure on pushes
 - [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - install, profiles, commands  
 - [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - install, shell, admin commands  
 - [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` references for secrets  
-
-**This repo:** After the CLIs are installed and authenticated, use each skill’s `SKILL.md` and `skills/*/references/*.md` for agent-oriented patterns (e.g. `ksm exec`, Docker/Kubernetes, CI, Commander admin).
 
 ---
 
@@ -125,24 +106,6 @@ The **[Keeper Security](https://keepersecurity.com)** agent kit is documentation
 
 - [SECURITY.md](SECURITY.md) - how to report vulnerabilities  
 - Design notes: avoid logging secrets; use one-time tokens and least privilege for KSM apps  
-
----
-
-## Supported agents
-
-Works with many agents via the Vercel Skills CLI (Claude Code, Cursor, Codex, Copilot, Windsurf, Roo Code, Gemini CLI, and others-see upstream docs for the current list).
-
----
-
-## Troubleshooting (short)
-
-| Issue | What to try |
-| --- | --- |
-| Agent ignores Keeper skills | Confirm `skills/keeper-*/SKILL.md` exists under the right `~/.…/skills/` path; restart the agent |
-| `ksm: command not found` | Install the KSM CLI per [KSM CLI docs](https://docs.keeper.io/en/keeperpam/secrets-manager/overview); ensure your shell `PATH` includes the install location |
-| `keeper: command not found` | Install Commander per [Commander CLI docs](https://docs.keeper.io/en/keeperpam/commander-cli/overview) |
-| Keyring / profile issues | See KSM CLI docs for keyring and profile options (including file-based config where appropriate) |
-| Skills in one agent only | Install or copy skills per agent, or use `npx skills add` per environment |
 
 ---
 
