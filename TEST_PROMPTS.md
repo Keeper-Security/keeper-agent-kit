@@ -228,38 +228,3 @@ Use these to check that the agent does **not** treat every message as a CLI task
 5. **"How do I backup my personal vault?"** - May reasonably route to **keeper-admin** (export/backup flows) or stay generic; **not** a reliable “no skill” case.
 
 6. **"Can Keeper integrate with my existing tools?"** - Broad product question; same caveat as (4) if the agent mentions Keeper skills.
-
-## Running Tests
-
-### Manual Testing
-
-1. Copy skills to your agent's skills directory
-2. Start interactive session with your agent
-3. Use prompts from above
-4. Verify correct skill is suggested/used
-5. Check output accuracy against documentation
-
-### Automated Testing (if agent supports)
-
-```bash
-# Example: Test prompt with CLI
-agent-cli --prompt "Install Keeper CLI tools" --expected-skill keeper-setup
-
-# Check if skill was activated
-agent-cli --test-trigger "keeper secrets" --expected keeper-secrets
-```
-
-## Reporting Issues
-
-If a skill is not triggered when expected:
-
-1. **Verify installation:** Check skill files are in correct directory
-2. **Check SKILL.md:** Verify frontmatter and description are correct
-3. **Check agent logs:** Look for skill loading errors
-4. **Test exact prompt:** Try using exact keywords from description
-5. **Open issue:** Report to GitHub with:
-   - Prompt used
-   - Expected skill
-   - Actual result
-   - Agent name and version
-   - OS and Python version
