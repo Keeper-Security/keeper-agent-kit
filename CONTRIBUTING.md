@@ -15,7 +15,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 
 Found a bug? Have a feature request?
 
-1. Check existing [GitHub Issues](https://github.com/Keeper-Security/agent-kit/issues)
+1. Check existing [GitHub Issues](https://github.com/Keeper-Security/keeper-agent-kit/issues)
 2. Create new issue with:
    - Clear title
    - Detailed description
@@ -79,8 +79,8 @@ This repo is Markdown-only (no build step for the skills themselves). To run the
 Then clone and install dev tools:
 
 ```bash
-git clone https://github.com/Keeper-Security/agent-kit
-cd agent-kit
+git clone https://github.com/Keeper-Security/keeper-agent-kit
+cd keeper-agent-kit
 task install
 ```
 

@@ -6,11 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/0.1.0/),
 
 ## [0.2.0](https://github.com/Keeper-Security/agent-kit/compare/v0.1.0...v0.2.0) (2026-03-31)
 
-
 ### Features
 
-* adds updated support for claude and cursor marketplace ([#3](https://github.com/Keeper-Security/agent-kit/issues/3)) ([efccb1a](https://github.com/Keeper-Security/agent-kit/commit/efccb1a55a65d0fc84b05d18beea7fae3dba380c))
-* initial commit ([aef4ab0](https://github.com/Keeper-Security/agent-kit/commit/aef4ab0d8fe469443118dcfeec073b939b62e2fa))
+- adds updated support for claude and cursor marketplace ([#3](https://github.com/Keeper-Security/agent-kit/issues/3)) ([efccb1a](https://github.com/Keeper-Security/agent-kit/commit/efccb1a55a65d0fc84b05d18beea7fae3dba380c))
+- initial commit ([aef4ab0](https://github.com/Keeper-Security/agent-kit/commit/aef4ab0d8fe469443118dcfeec073b939b62e2fa))
 
 ## [0.1.0] - 2026-03-31
 
@@ -26,4 +25,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/0.1.0/),
 - **Developer tooling** - `Taskfile` tasks for Markdown (`task fmt`), dependencies (`task install`), and running CI locally with [act](https://github.com/nektos/act) (`task act`); [`.github/ACT.md`](.github/ACT.md) documents local workflow runs.
 - **Community** - Issue templates, pull request template, `CODEOWNERS`, Apache 2.0 [`LICENSE.md`](LICENSE.md), and pre-commit hooks for Markdown format checks, Conventional Commit messages, and plugin/skill validation when you commit.
 
-[0.1.0]: https://github.com/Keeper-Security/agent-kit/releases/tag/v0.1.0
+[0.1.0]: https://github.com/Keeper-Security/keeper-agent-kit/releases/tag/v0.1.0

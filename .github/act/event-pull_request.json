@@ -6,8 +6,8 @@
   },
   "repository": {
     "id": 1,
-    "name": "agent-kit",
-    "full_name": "Keeper-Security/agent-kit",
+    "name": "keeper-agent-kit",
+    "full_name": "Keeper-Security/keeper-agent-kit",
     "owner": {
       "login": "Keeper-Security",
       "id": 1
@@ -25,8 +25,8 @@
       "sha": "0000000000000000000000000000000000000000",
       "repo": {
         "id": 2,
-        "name": "agent-kit",
-        "full_name": "Keeper-Security/agent-kit",
+        "name": "keeper-agent-kit",
+        "full_name": "Keeper-Security/keeper-agent-kit",
         "owner": {
           "login": "Keeper-Security"
         }
@@ -40,8 +40,8 @@
       },
       "repo": {
         "id": 1,
-        "name": "agent-kit",
-        "full_name": "Keeper-Security/agent-kit",
+        "name": "keeper-agent-kit",
+        "full_name": "Keeper-Security/keeper-agent-kit",
         "owner": {
           "login": "Keeper-Security"
         }

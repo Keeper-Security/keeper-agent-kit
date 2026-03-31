@@ -18,6 +18,6 @@
     "rotation",
     "privileged-access"
   ],
-  "repository": "https://github.com/Keeper-Security/agent-kit",
+  "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
   "logo": "assets/logo.png"
 }

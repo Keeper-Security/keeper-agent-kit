@@ -37,6 +37,7 @@ exclude = [
   "vendor",
   "dist",
   "build",
+  "CHANGELOG.md",
 ]
 
 # Respect .gitignore files when scanning directories (default: true)

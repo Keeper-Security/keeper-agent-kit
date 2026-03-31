@@ -13,7 +13,7 @@ Security fixes are applied to the **default branch** of this repository (`main` 
 Instead:
 
 1. **Email:** Use the contact channel published on [Keeper Security Support](https://keepersecurity.com/support) for security-sensitive reports related to Keeper products and this Keeper Security agent kit.  
-2. **GitHub private reporting:** If [private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) is enabled for `Keeper-Security/agent-kit`, you may use it for issues specific to this repository (documentation, CI, skill content).
+2. **GitHub private reporting:** If [private vulnerability reporting](https://docs.github.com/en/code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/privately-reporting-a-security-vulnerability) is enabled for `Keeper-Security/keeper-agent-kit`, you may use it for issues specific to this repository (documentation, CI, skill content).
 
 Include:
 

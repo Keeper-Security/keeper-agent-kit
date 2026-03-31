@@ -34,21 +34,21 @@ Pick **one** path. Official paths may require the plugin to be listed in each ma
 ### Claude Code (plugin)
 
 ```bash
-/plugin marketplace add Keeper-Security/agent-kit
+/plugin marketplace add Keeper-Security/keeper-agent-kit
 /plugin install keeper-secrets@keeper-security
 ```
 
 ### Any agent (Vercel Skills CLI)
 
 ```bash
-npx skills add Keeper-Security/agent-kit
+npx skills add Keeper-Security/keeper-agent-kit
 ```
 
 Optional flags:
 
 ```bash
-npx skills add Keeper-Security/agent-kit -a cursor    # target one agent
-npx skills add Keeper-Security/agent-kit -g           # global install
+npx skills add Keeper-Security/keeper-agent-kit -a cursor    # target one agent
+npx skills add Keeper-Security/keeper-agent-kit -g           # global install
 ```
 
 ### Manual (copy skills into the agent’s skills folder)
@@ -56,8 +56,8 @@ npx skills add Keeper-Security/agent-kit -g           # global install
 Clone the repo, then copy the three skill folders to **your** agent’s skills directory (create it if needed):
 
 ```bash
-git clone https://github.com/Keeper-Security/agent-kit
-cd agent-kit
+git clone https://github.com/Keeper-Security/keeper-agent-kit
+cd keeper-agent-kit
 ```
 
 | Agent | Typical skills path |
@@ -113,7 +113,7 @@ The **[Keeper Security](https://keepersecurity.com)** agent kit is documentation
 
 We welcome issues and pull requests.
 
-1. Check [existing issues](https://github.com/Keeper-Security/agent-kit/issues) before filing a new one.  
+1. Check [existing issues](https://github.com/Keeper-Security/keeper-agent-kit/issues) before filing a new one.  
 2. For changes: fork, branch, keep edits focused; follow [CONTRIBUTING.md](CONTRIBUTING.md) (frontmatter for `SKILL.md`, no real secrets in examples, `pre-commit run --all-files` and `task fmt` after [development setup](CONTRIBUTING.md#development-setup)).  
 3. Pull requests should describe **what** changed and **why**, and note how you tested.
 
@@ -131,7 +131,7 @@ Full text: **[LICENSE](LICENSE.md)**.
 
 ## Support
 
-- **Issues & features:** [github.com/Keeper-Security/agent-kit/issues](https://github.com/Keeper-Security/agent-kit/issues)  
+- **Issues & features:** [github.com/Keeper-Security/keeper-agent-kit/issues](https://github.com/Keeper-Security/keeper-agent-kit/issues)  
 - **Keeper Security Support:** [keepersecurity.com/support](https://keepersecurity.com/support)  
 - **Docs:** [docs.keeper.io](https://docs.keeper.io)  
 
