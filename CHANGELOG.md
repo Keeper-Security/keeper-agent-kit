@@ -4,6 +4,13 @@ All notable changes to **Keeper Security Agent Kit** are documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/0.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1](https://github.com/Keeper-Security/keeper-agent-kit/compare/v0.2.0...v0.2.1) (2026-03-31)
+
+
+### Bug Fixes
+
+* rename repo to keeper-agent-kit ([1be1f84](https://github.com/Keeper-Security/keeper-agent-kit/commit/1be1f841388f7c27346ac0816c8fde53a9763f0e))
+
 ## [0.2.0](https://github.com/Keeper-Security/agent-kit/compare/v0.1.0...v0.2.0) (2026-03-31)
 
 ### Features
