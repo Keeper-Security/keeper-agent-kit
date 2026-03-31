@@ -17,12 +17,12 @@ Teach AI coding agents to use **Keeper Secrets Manager (KSM)** and **Keeper Comm
 ## Prerequisites
 
 - A [Keeper Security](https://keepersecurity.com) account
-- **[KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) (`keeper-secrets`):**
-- **[Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) (`keeper-admin`):**
+- [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) (plugin: `keeper-secrets`)
+- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) (plugin: `keeper-admin`)
 - Python 3.10+
 - Linux, Windows, Mac OS
 
-**Install and configure the CLIs** The `keeper-setup` skill will guide you through first-time setup.
+The `keeper-setup` skill will guide you through first-time setup if you don't have the CLIs installed.
 
 ---
 
