@@ -91,7 +91,9 @@ pip install pre-commit
 pre-commit install
 ```
 
-Hooks call `task fmt` (rumdl) and validate **commit messages** (Conventional Commits via `scripts/validate-commit-msg.sh`). `default_install_hook_types` includes `commit-msg`, so `pre-commit install` registers both. Before you open a PR, run `task fmt` or `pre-commit run --all-files`. Deeper validation (plugin JSON, skill frontmatter, references) runs in **GitHub Actions** on push/PR.
+You also need **`jq`** on your PATH for `scripts/validate.sh` (e.g. `brew install jq` on macOS).
+
+Hooks call `task fmt` (rumdl), validate **commit messages** (Conventional Commits via `scripts/validate-commit-msg.sh`), and **`task validate`** (full check: `scripts/validate.sh` — manifests, skills, triggers, examples, root docs). `default_install_hook_types` includes `commit-msg`, so `pre-commit install` registers both stages. Before you open a PR, run `task fmt`, **`task validate`** (or `pre-commit run plugin-ci --all-files`), or `pre-commit run --all-files`.
 
 ### Commit messages (Conventional Commits)
 
@@ -107,19 +109,19 @@ Pull requests are checked by **Semantic PR** (`.github/workflows/semantic-pull-r
 
 ### Releases and changelog
 
-- **[release-please](https://github.com/googleapis/release-please)** runs on pushes to `main` (`.github/workflows/release-please.yml`). It opens a **release pull request** that bumps `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, and versions in `.claude-plugin/plugin.json` and `marketplace.json` based on merged conventional commits.
+- **[release-please](https://github.com/googleapis/release-please)** runs on pushes to `main` (`.github/workflows/release-please.yml`). It opens a **release pull request** that bumps `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, and every version field listed in `release-please-config.json` → `extra-files` (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` `metadata.version` and each plugin’s `version`, `.cursor-plugin/marketplace.json` `metadata.version`, `plugins/**/.cursor-plugin/plugin.json`, and the versioned example in `docs/add-a-plugin.md`).
 - When that release PR is **merged**, GitHub receives a **release** with notes derived from those commits (and the updated changelog).
 - Configure paths in `release-please-config.json` and `.release-please-manifest.json`.
 
 #### `version.txt` (how the version is updated)
 
 - **Role** - One line, semver only (e.g. `1.2.3`). With **`release-type: simple`** in `release-please-config.json`, this file is the **canonical project version** release-please reads and writes.
-- **Normal workflow** - **Do not** edit `version.txt` by hand to ship a release. Land conventional commits on `main`, let release-please open its **release PR**, review it, and **merge that PR**. The PR updates `version.txt` together with `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in `.claude-plugin/plugin.json` and `marketplace.json` (see `extra-files` in `release-please-config.json`).
+- **Normal workflow** - **Do not** edit `version.txt` by hand to ship a release. Land conventional commits on `main`, let release-please open its **release PR**, review it, and **merge that PR**. The PR updates `version.txt` together with `.release-please-manifest.json`, `CHANGELOG.md`, and all paths in `release-please-config.json` → `extra-files` (see above).
 - **Avoid drift** - If you ever change a version **outside** that flow (unusual), update **every** file release-please keeps in sync so they all match; mismatches break automation and CI expectations.
 
 ### Optional: run CI workflows locally with [act](https://github.com/nektos/act)
 
-Use **[`.github/ACT.md`](.github/ACT.md)** for prerequisites, how `act` maps to GitHub Actions, and the exact commands. From the repo root, **`./scripts/act-all.sh`** (or **`task act`**) runs **act** against every workflow under `.github/workflows`. **validate-plugin** and **test-skills** must pass locally (same as CI). **semantic-pull-request** and **release-please** are included for smoke coverage but typically do not finish inside act without GitHub API access; see **ACT.md**.
+Use **[`.github/ACT.md`](.github/ACT.md)** for prerequisites, how `act` maps to GitHub Actions, and the exact commands. From the repo root, **`./scripts/act-all.sh`** (or **`task act`**) runs **`task validate`** first (same checks as the **pre-commit** `plugin-ci` hook), then **act** against **semantic-pull-request** and **release-please**. Plugin validation is **not** duplicated on GitHub; use pre-commit (or `task validate`) before you push. **semantic-pull-request** and **release-please** often do not finish inside act without GitHub API access; see **ACT.md**.
 
 ## Testing Guidelines
 
@@ -293,7 +295,7 @@ Focus on:
 
 ## Versioning
 
-**Plugin / repo version** - [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, and the `version` fields in **`.claude-plugin/plugin.json`** and **`.claude-plugin/marketplace.json`** (see `release-please-config.json` → `extra-files`). It does **not** bump per-skill versions; skills under `skills/` ship as part of that plugin release.
+**Plugin / repo version** - [release-please](https://github.com/googleapis/release-please) manages **one** semver for the whole distribution: `version.txt`, `.release-please-manifest.json`, `CHANGELOG.md`, **`.claude-plugin/plugin.json`**, **`.claude-plugin/marketplace.json`** (`metadata.version` and each listed plugin’s `version`), **`.cursor-plugin/marketplace.json`** (`metadata.version`), **`plugins/**/.cursor-plugin/plugin.json`**, and the **docs/example** block in **`docs/add-a-plugin.md`** (see `release-please-config.json` → `extra-files`). CI runs **`scripts/verify-repo-versions.py`** to ensure `version.txt` matches those files. It does **not** bump per-skill versions; skills under `skills/` ship as part of that plugin release.
 
 **Change significance** (for commit messages and changelog tone; not separate skill semver in this repo):
 

@@ -5,8 +5,38 @@
       "changelog-path": "CHANGELOG.md",
       "release-type": "simple",
       "extra-files": [
-        ".claude-plugin/plugin.json",
-        ".claude-plugin/marketplace.json"
+        {
+          "type": "json",
+          "path": ".claude-plugin/marketplace.json",
+          "jsonpath": "$.metadata.version"
+        },
+        {
+          "type": "json",
+          "path": ".claude-plugin/marketplace.json",
+          "jsonpath": "$.plugins[*].version"
+        },
+        {
+          "type": "json",
+          "path": ".cursor-plugin/marketplace.json",
+          "jsonpath": "$.metadata.version"
+        },
+        {
+          "type": "json",
+          "path": ".cursor-plugin/marketplace.json",
+          "jsonpath": "$.plugins[*].version"
+        },
+        {
+          "type": "json",
+          "path": "plugins/**/.cursor-plugin/plugin.json",
+          "glob": true,
+          "jsonpath": "$.version"
+        },
+        {
+          "type": "json",
+          "path": "plugins/**/.claude-plugin/plugin.json",
+          "glob": true,
+          "jsonpath": "$.version"
+        }
       ]
     }
   }

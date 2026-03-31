@@ -14,10 +14,19 @@ repos:
       # Markdown formatting
       - id: fmt
         name: rumdl fmt (check)
-        stages: [commit]
+        stages: [pre-commit]
         language: system
         entry: task fmt
         pass_filenames: false
+
+      # Plugin manifests (Claude/Cursor), marketplaces, skills, triggers, docs (scripts/validate.sh)
+      - id: plugin-ci
+        name: Plugin and skill validation
+        stages: [pre-commit]
+        language: system
+        entry: task validate
+        pass_filenames: false
+        files: ^(plugins/|\.claude-plugin/|\.cursor-plugin/|scripts/validate\.sh|Taskfile\.yaml|README\.md|SECURITY\.md|CONTRIBUTING\.md|LICENSE\.md)
 
   # Standard pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks

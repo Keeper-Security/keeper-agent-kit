@@ -1,0 +1,24 @@
+{
+  "name": "keeper-secrets",
+  "version": "0.1.0",
+  "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI (ksm) for developer workflows, including ksm exec, interpolate, and Keeper notation.",
+  "author": {
+    "name": "Keeper Security",
+    "email": "commanders@keepersecurity.com"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "secrets",
+    "vault",
+    "credentials",
+    "ksm",
+    "devops",
+    "keeper",
+    "keeper-secrets-manager",
+    "non-human-identity",
+    "ci-cd",
+    "docker",
+    "kubernetes"
+  ],
+  "repository": "https://github.com/Keeper-Security/agent-kit"
+}
