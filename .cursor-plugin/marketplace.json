@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Keeper Security Agent Kit - KSM CLI, Commander, and setup skills for Claude Code",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "homepage": "https://github.com/Keeper-Security/agent-kit",
     "repository": "https://github.com/Keeper-Security/agent-kit",
     "license": "Apache-2.0",
@@ -20,7 +20,7 @@
       "name": "keeper-admin",
       "source": "./plugins/keeper-admin",
       "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Commander CLI",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": {
         "name": "Keeper Security",
         "email": "commanders@keepersecurity.com"
@@ -41,7 +41,7 @@
       "name": "keeper-secrets",
       "source": "./plugins/keeper-secrets",
       "description": "Retrieve, inject, and manage secrets from Keeper Vault using KSM CLI for developer workflows",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": {
         "name": "Keeper Security",
         "email": "commanders@keepersecurity.com"
@@ -62,7 +62,7 @@
       "name": "keeper-setup",
       "source": "./plugins/keeper-setup",
       "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": {
         "name": "Keeper Security",
         "email": "commanders@keepersecurity.com"
