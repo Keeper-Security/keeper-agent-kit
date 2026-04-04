@@ -341,10 +341,9 @@ PAM records are stored in Keeper Vault.
 ### Store PAM Record
 
 ```bash
-# Create PAM login record
+# Create PAM login record (set password flag at runtime via interactive add or secure input)
 My Vault> add --record-type login --title "Prod DB Admin" \
   --field login=postgres \
-  --field password=SuperSecret123 \
   --field host=db.prod.example.com \
   --field port=5432 \
   --custom-field database=production

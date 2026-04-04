@@ -41,14 +41,11 @@ Check installation: `keeper version`
 ## Authentication
 
 ```bash
-# Interactive login
+# Interactive login (preferred — credentials are not passed as CLI arguments)
 keeper shell
 # Prompts for email + master password + 2FA
 
-# Non-interactive
-keeper --user admin@company.com --password "master_pw" shell
-
-# Persistent login (recommended for CLI use)
+# Persistent login (recommended for ongoing CLI use)
 keeper shell
 My Vault> this-device register
 My Vault> this-device persistent-login ON
@@ -56,6 +53,12 @@ My Vault> this-device persistent-login ON
 # Biometric authentication (supported platforms)
 My Vault> biometric register
 ```
+
+Do **not** pass master passwords, API tokens, or vault field values on the command
+line (e.g. `--password`), in URLs, or in generated scripts—they appear in process
+listings and shell history. For automation, use interactive setup once, enable
+persistent device login where appropriate, or follow the official Commander CLI
+documentation for supported non-interactive patterns.
 
 ## Vault Operations
 
@@ -74,9 +77,11 @@ My Vault> get <RECORD_UID>        # Show full record details
 
 ```bash
 My Vault> add --record-type login --title "New Record" \
-  --field login=admin --field password=s3cur3
+  --field login=admin
+# Set passwords and other sensitive fields via interactive prompts, or supply values only from the user’s secure input—never embed sample secrets in commands.
 
-My Vault> edit <RECORD_UID> --field password=newpassword
+My Vault> edit <RECORD_UID>
+# Or non-interactive field updates for non-secret fields only, e.g. --field login=newuser
 
 My Vault> rm <RECORD_UID>
 
@@ -159,8 +164,10 @@ My Vault> secrets-manager client remove --app <APP_UID> \
 My Vault> secrets-manager share --app <APP_UID> --email admin2@company.com
 ```
 
-The One-Time Access Token output from `client add` is what you pass to
-`ksm profile init --token "XX:XXXXXXXXXX"` on the target machine.
+The One-Time Access Token output from `client add` is configured on the target
+machine using the **keeper-setup** skill (token via `KSM_CLI_TOKEN` or other
+supported secure methods—**not** as a literal `--token` argument in shared
+examples or chat).
 
 ## KeeperPAM Operations
 

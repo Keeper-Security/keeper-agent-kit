@@ -34,16 +34,18 @@ pip install keeper-secrets-manager-cli
 
 Initialize a new profile with One-Time Access Token.
 
+Prefer **`KSM_CLI_TOKEN`** in the environment so the token is not passed as a `--token` argument (see [Keeper profile command](https://docs.keeper.io/en/keeperpam/secrets-manager/secrets-manager-command-line-interface/profile-command)). `--token` overrides the environment if both are set.
+
 ```bash
-ksm profile init --token "US:XXXXXXXXXX"
-ksm profile init --profile production --token "US:XXXXXXXXXX"
-ksm profile init --token "US:XXXXXXXXXX" --hostname keepersecurity.com
-ksm profile init --token "US:XXXXXXXXXX" --ini-file /etc/keeper/config.ini
+ksm profile init
+ksm profile init --profile production
+ksm profile init --hostname keepersecurity.com
+ksm profile init --ini-file /etc/keeper/config.ini
 ```
 
 **Options:**
 
-- `--token <token>` - One-Time Access Token (required)
+- `--token <token>` - One-Time Access Token (prefer `KSM_CLI_TOKEN` instead of a literal on the CLI)
 - `--profile <name>` - Profile name (default: 'default')
 - `--hostname <host>` - Keeper host (keepersecurity.com, keepersecurity.eu, etc.)
 - `--ini-file <path>` - Path to config file (default: ~/.keeper/keeper.ini)
@@ -178,14 +180,13 @@ Create a new secret record.
 # Interactive editor
 ksm secret add editor --record-type login --title "New Secret"
 
-# From command-line fields
+# From command-line fields (set password fields via interactive editor or secure input—not sample literals)
 ksm secret add field --record-type login --title "API Key" \
-  --field "login=user@example.com" \
-  --field "password=secret123"
+  --field "login=user@example.com"
 
 # Add to specific folder
 ksm secret add field --record-type login --title "DB Cred" \
-  --field "login=admin" --field "password=secret" \
+  --field "login=admin" \
   --folder-uid <FOLDER_UID>
 
 # Custom fields
@@ -427,7 +428,8 @@ client_id = <client-id>
 
 ### Environment Variables
 
-- `KSM_TOKEN` - One-Time Access Token for auto-init
+- `KSM_CLI_TOKEN` - One-Time Access Token for `ksm profile init` without passing `--token` on the command line (preferred)
+- `KSM_TOKEN` - One-Time Access Token for auto-init (e.g. containers; see Keeper docs)
 - `KSM_CONFIG` - Base64-encoded config (replaces keeper.ini)
 - `KSM_CONFIG_FILE` - Path to keeper.ini
 - `KSM_HOSTNAME` - Override keeper host

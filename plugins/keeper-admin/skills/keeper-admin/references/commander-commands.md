@@ -10,8 +10,7 @@ Official documentation: [Commander CLI](https://docs.keeper.io/en/keeperpam/comm
 # Start interactive shell
 keeper shell
 
-# Non-interactive mode
-keeper --user admin@company.com --password "master_pw" shell
+# Avoid passing passwords or tokens on the command line; use interactive shell or official docs for supported automation.
 
 # Batch mode (run commands from file)
 keeper --batch-mode --commands-file commands.txt
@@ -99,7 +98,8 @@ Create a new record.
 My Vault> add                  # Interactive mode
 My Vault> add --record-type login --title "New Login"
 My Vault> add --record-type login --title "API Key" \
-  --field login=user@example.com --field password=secret
+  --field login=user@example.com
+# Add password and other sensitive fields interactively or via secure input—do not put secrets in example commands.
 My Vault> add --folder <FOLDER_UID> --record-type login
 ```
 
@@ -125,9 +125,8 @@ Edit a record.
 ```bash
 My Vault> edit <RECORD_UID>    # Interactive editor
 My Vault> edit <RECORD_UID> --field login=newuser
-My Vault> edit <RECORD_UID> --field password=newpass \
-  --field login=newuser
-My Vault> edit -t "Record Title" --field password=rotated
+# For password fields, use interactive edit or values from secure input only.
+My Vault> edit -t "Record Title"
 ```
 
 ### rm
@@ -376,7 +375,7 @@ Create and manage Client Devices (machine accounts).
 # Add client device (generates One-Time Token)
 My Vault> secrets-manager client add --app <APP_UID> \
   --name "Web Server 1"
-# Output shows: XX:XXXXXXXXXX (One-Time Token)
+# Output includes a one-time token; treat it as secret and configure the target per keeper-setup (KSM_CLI_TOKEN, not pasted into chat).
 
 # Add with IP unlocking
 My Vault> secrets-manager client add --app <APP_UID> \
@@ -572,7 +571,7 @@ cat commands.txt | keeper --batch-mode
 
 ```bash
 --user <email>             # Keeper user email
---password <pw>            # Master password (not recommended)
+# Avoid --password: use interactive login or documented secure automation; CLI passwords leak via process listings and history.
 --profile <path>           # Profile file location
 --batch-mode               # Batch/non-interactive mode
 --config <path>            # Config file
@@ -617,8 +616,7 @@ My Vault> secrets-manager client add --app <APP_UID> \
   --name "Production Web Server"
 # Note the One-Time Token displayed
 
-# On the server:
-# ksm profile init --token "XX:XXXXXXXXXX"
+# On the server: initialize KSM CLI using KSM_CLI_TOKEN (see keeper-setup skill and Keeper profile init docs)—do not pass tokens on the command line.
 ```
 
 ### Rotate Database Password
@@ -627,8 +625,8 @@ My Vault> secrets-manager client add --app <APP_UID> \
 # Get record
 My Vault> get <DB_UID>
 
-# Update password (also update in DB)
-My Vault> edit <DB_UID> --field password=newsecurepass
+# Update password via interactive edit (also update in DB); do not embed secrets in commands.
+My Vault> edit <DB_UID>
 
 # Verify
 My Vault> get <DB_UID> --json | jq '.fields[] | select(.type=="password")'
