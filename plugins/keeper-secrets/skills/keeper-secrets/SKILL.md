@@ -47,25 +47,26 @@ by default when installed with keyring support.
 # Install with keyring support (recommended)
 pip install keeper-secrets-manager-cli[keyring]
 
-# Initialize with One-Time Access Token
-ksm profile init --token "XX:XXXXXXXXXX"
+# Initialize with One-Time Access Token (set KSM_CLI_TOKEN in your shell first—see Keeper profile docs; do not pass --token with a literal value)
+ksm profile init
 
 # For containers/CI (no keyring available)
 pip install keeper-secrets-manager-cli
-ksm profile init --token "XX:XXXXXXXXXX"
+# Prerequisite: export KSM_CLI_TOKEN from a trusted source, then:
+ksm profile init
 # Creates keeper.ini with 0600 permissions
 
-# Auto-create profile from environment variable
-export KSM_TOKEN="XX:XXXXXXXXXX"
-ksm secret list  # Profile auto-created on first use
+# Auto-create profile from environment variable (containers; see Keeper docs)
+ksm secret list  # When KSM_TOKEN is set, profile may be auto-created on first use
 ```
 
 ### Multiple Profiles
 
 ```bash
 ksm profile list
-ksm profile init --profile production --token "XX:XXXXXXXXXX"
-ksm profile init --profile staging --token "YY:YYYYYYYYYY"
+# After exporting KSM_CLI_TOKEN for each setup step:
+ksm profile init --profile production
+ksm profile init --profile staging
 ksm secret list --profile production
 ```
 
@@ -73,7 +74,8 @@ ksm secret list --profile production
 
 | Variable | Purpose |
 | --- | --- |
-| `KSM_TOKEN` | One-Time Access Token for auto-init |
+| `KSM_CLI_TOKEN` | One-Time Access Token for `ksm profile init` without `--token` on the CLI (preferred) |
+| `KSM_TOKEN` | One-Time Access Token for auto-init in some container flows (see Keeper docs) |
 | `KSM_CONFIG` | Base64 config string (for K8s/containers) |
 | `KSM_CONFIG_FILE` | Path to keeper.ini |
 | `KSM_CLI_PROFILE` | Active profile name |
@@ -169,12 +171,12 @@ ksm interpolate --in-file config.tmpl --out-file config.yaml
 # Create from editor
 ksm secret add editor --record-type login --title "New API Key"
 
-# Create from field arguments
+# Create from field arguments (supply sensitive field values from secure input, not sample literals)
 ksm secret add field --record-type login --title "New API Key" \
-  --field "login=admin" --field "password=s3cur3"
+  --field "login=admin"
 
-# Update a field
-ksm secret update -u <RECORD_UID> --field "password=newpassword123"
+# Update a field (use secure input for password fields)
+ksm secret update -u <RECORD_UID> --field "login=newuser"
 
 # Delete a record
 ksm secret delete -u <RECORD_UID>
@@ -247,7 +249,8 @@ kubectl create secret generic ksm-config \
 ```bash
 # One-time setup
 pip install keeper-secrets-manager-cli[keyring]
-ksm profile init --token "XX:XXXXXXXXXX"
+# Prerequisite: export KSM_CLI_TOKEN, then:
+ksm profile init
 
 # Daily use - run your app with secrets injected
 DB_URL="keeper://<UID>/field/url" \

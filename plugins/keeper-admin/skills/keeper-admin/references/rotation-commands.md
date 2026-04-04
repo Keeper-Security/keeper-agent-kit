@@ -365,8 +365,8 @@ My Vault> pam rotation create --record <RECORD_UID> \
 ```bash
 My Vault> add --record-type login \
   --title "GitHub Token" \
-  --field password=ghp_xxxxxxxxxxxx \
   --custom-field repository=company/main
+# Set the token/password field interactively or from secure input—do not embed secrets in example commands.
 
 My Vault> pam rotation create --record <RECORD_UID> \
   --target-type github_api \

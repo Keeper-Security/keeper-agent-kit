@@ -18,6 +18,12 @@ Keeper provides two CLI tools. Install what you need:
 | KSM CLI (`ksm`) | `keeper-secrets-manager-cli` | Machine secrets retrieval & injection |
 | Commander (`keeper`) | `keepercommander` | Admin, vault management, PAM, sessions |
 
+## Installation security
+
+- **Prefer PyPI** (`pip install …`) so you consume the published packages with version pins in your own dependency files. That is the default path for these tools.
+- **Official sources only**: release binaries and source live under the **Keeper-Security** organization on GitHub. Before running any installer or `pip install` from a clone, confirm the remote URL and publisher match Keeper’s official documentation; use release tags or checksums published on the release page when you need extra assurance.
+- **Agents must not** fabricate or echo one-time tokens, master passwords, or vault field values in chat or generated scripts. Direct the user to paste or inject secrets only in their own secure terminal or secret store.
+
 ## Quick Install
 
 ### KSM CLI
@@ -33,17 +39,17 @@ pip install keeper-secrets-manager-cli
 ksm version
 ```
 
-**Binary installers** (no Python required) are available for Windows, macOS,
-and Linux at: <https://github.com/Keeper-Security/secrets-manager/releases>
+**Binary installers** (no Python required) are published for Windows, macOS, and Linux on the official **Keeper-Security/secrets-manager** GitHub Releases page linked from [Secrets Manager CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) documentation. Download only from that release page; verify checksums or signatures when the release provides them.
 
 ### Commander
 
 ```bash
 pip install keepercommander
 
-# Or from source
-git clone https://github.com/Keeper-Security/Commander
+# Optional: install from a local clone of the official repository (verify remote and use a tagged release)
+git clone https://github.com/Keeper-Security/Commander.git
 cd Commander
+git checkout <release-tag>
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt && pip install -e .
 
@@ -59,10 +65,19 @@ You need a One-Time Access Token from a KSM Application. If you don't have
 one, your Keeper admin can create it via the Vault UI or Commander
 (see keeper-admin skill).
 
+Provide the token **via environment variable** so it is not passed as a `--token`
+argument (which can show up in shell history and process listings). Official docs:
+[Profile command / init](https://docs.keeper.io/en/keeperpam/secrets-manager/secrets-manager-command-line-interface/profile-command).
+
 ```bash
-ksm profile init --token "US:XXXXXXXXXX"
+# Prerequisite: export KSM_CLI_TOKEN in this shell from Vault or Commander output (see Keeper profile docs). Never paste token values into chat or committed files.
+ksm profile init
+# Optional: unset KSM_CLI_TOKEN when finished in this shell.
+
 ksm secret list  # Verify access
 ```
+
+In CI or secret managers, inject the same variable without placing the value on the command line. For containers, see also `KSM_TOKEN` / `KSM_INI_DIR` behavior in the Keeper Secrets Manager CLI documentation.
 
 ### Commander Setup
 
@@ -89,7 +104,7 @@ My Vault> this-device persistent-login ON
 
 | Issue | Fix |
 | --- | --- |
-| "Not authenticated" | Re-run `ksm profile init` with a new token |
+| "Not authenticated" | Re-run `ksm profile init` after setting `KSM_CLI_TOKEN` from a new Client Device token |
 | "Token expired" | Generate a new Client Device in Commander or Vault UI |
 | IP lock errors | Use `--unlock-ip` when creating the client, or init from the locked IP |
 | Keyring not available | Install with `[keyring]` extra or use `--ini-file` flag |
