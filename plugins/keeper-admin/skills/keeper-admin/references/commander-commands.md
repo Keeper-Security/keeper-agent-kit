@@ -649,3 +649,7 @@ My Vault> audit-report --event-type "record_access"
 - `2` - Authentication error
 - `3` - Command syntax error
 - `4` - Item not found
+
+## Command References
+
+Refer [Keeper commander command reference documentation](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference)

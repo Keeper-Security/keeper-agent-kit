@@ -35,8 +35,53 @@ breadth of vault, enterprise, and PAM operations.
 1. Python 3.10+
 2. Install: `pip install keepercommander`
 3. A Keeper account with appropriate admin permissions
+4. Tmux
 
 Check installation: `keeper version`
+
+
+
+## Workflow
+
+1. Use `references/commander-commands.md` for interacting with Keeper commander, Use `--help` for getting more information for the command.
+2. Verify the session is opened via interactive tmux session.
+3. Verify available binaries in related python environments:
+  - `keeper --help`
+  - `ksm --help`
+4. Confirm session or auth state before any secret read.
+5. Check login status using whoami, if not logged in, then do the login first.
+6. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
+7. Prefer secret injection or one-command environment scoping over writing secrets to disk.
+8. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
+
+
+## REQUIRED tmux session
+
+The shell tool uses a fresh TTY per command. To preserve Keeper interactive context, authentication state, and MFA prompts, run interactive Keeper commands or secrets manager command inside a dedicated tmux session.
+
+
+Example pattern:
+
+```bash
+SOCKET_DIR="${TMUX_SOCKET_DIR:-${TMPDIR:-/tmp}/keeper-tmux-sockets}"
+mkdir -p "$SOCKET_DIR"
+SOCKET="$SOCKET_DIR/keeper-commander.sock"
+SESSION="keeper-auth-$(date +%Y%m%d-%H%M%S)"
+
+tmux -S "$SOCKET" new -d -s "$SESSION" -n shell
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 -- "keeper shell || keeper-commander shell || bash" Enter
+tmux -S "$SOCKET" capture-pane -p -J -t "$SESSION":0.0 -S -120
+```
+
+Then drive the session carefully:
+
+```bash
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 -l -- "whoami"
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 Enter
+tmux -S "$SOCKET" capture-pane -p -J -t "$SESSION":0.0 -S -120
+```
+
+Kill the tmux session when the task is complete unless the user wants a persistent Keeper shell.
 
 ## Authentication
 
@@ -201,6 +246,12 @@ keeper --batch-mode --commands-file commands.txt
 # Pipe commands
 echo "list" | keeper --batch-mode --user admin@co.com
 ```
+
+## References
+- Use `references/endpoint-privilege-management.md` for endpoint privilege management commands like kepm, epm, pedm commands
+- Use `references/enterprise-mgmt.md` for enterprise management scenarios and commands.
+- Use `references/pam-commands.md` for privileged access management or KeeperPAM functionalities.
+- Use `references/msp-management.md` for commands specific to Managed Service Provider (MSP) tenants
 
 ## Guardrails
 
