@@ -49,10 +49,12 @@ Check installation: `keeper version`
   - `keeper --help`
   - `ksm --help`
 4. Confirm session or auth state before any secret read.
-5. Check login status using whoami, if not logged in, then do the login first.
-6. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
-7. Prefer secret injection or one-command environment scoping over writing secrets to disk.
-8. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
+5. Check login status using whoami, if not logged in, complete login process and then continue rest flow.
+6. ALAWYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+7. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
+8. Prefer secret injection or one-command environment scoping over writing secrets to disk.
+9. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
+10. ALWAYS ask confirmation from users for any delete operations.
 
 
 ## REQUIRED tmux session
@@ -264,5 +266,6 @@ echo "list" | keeper --batch-mode --user admin@co.com
   them to the keeper-secrets skill and KSM CLI.
 - Commander requires a full user login - it cannot be used in headless
   environments without persistent login configured.
+- ALWAYS ask confirmation from users for any DELETE operations.
 
 For detailed command reference, read `references/commander-commands.md`. For `keeper://` URIs and `ksm exec` / `ksm interpolate`, see [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) and the **keeper-secrets** skill.
