@@ -1,7 +1,7 @@
 {
   "name": "keeper-admin",
   "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
     "name": "Keeper Security",
     "email": "commanders@keepersecurity.com"
