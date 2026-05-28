@@ -62,3 +62,8 @@ credentials.json
 # Node modules (if any frontend components added later)
 node_modules/
 npm-debug.log
+
+#Agents
+.claude/
+.cursor/
+.codex/
