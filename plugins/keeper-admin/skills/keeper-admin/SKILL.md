@@ -143,12 +143,14 @@ My Vault> rm <RECORD_UID>
 My Vault> record-history <RECORD_UID>
 ```
 
-### Sharing
+## Sharing Workflow
+
 1. ALWAYS get record details and check if the record or folder type is Classic or nested sub folder type.
 2. IF record or folder type is nested sub folder then use nsf commands from references. Otherwise use the classic commands.
 3. ALWAYS check if the given record or folder type is PamUser or PAM folder that stores PamUser type records, If YES then ask use if they want to auto rotate the password after a certain time or if access time provided is over.
 4. ALWAYS ask user for setting up a expiration time while sharing a record or folder.
 5. Use -h flag for the supporting flags.
+6. MUST ask users inputs for permission flag, Once confirmed, then only share a record, Otherwise DONT proceed ahead.
 
 ## Classic Commands
 ```bash
