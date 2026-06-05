@@ -30,7 +30,7 @@ collection
 approval
 scim
 ```
-Use -h to know exact syntac and working for each sub-commands.
+Use -h to know exact syntax and working for each sub-commands.
 
 Refer [keeper official EPM documentation](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference/endpoint-privilege-manager-commands) instead of guessing a particular command.
 

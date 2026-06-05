@@ -40,7 +40,7 @@ Check installation: `ksm version`
 ## Workflow
 1. ALWAYS use dedicated TMUX session for all KSM related operations.
 2. While configuring KSM for first time, pre-configure the KSM init command, Ask use input for one time token and inject that in pre-configured tmux session.
-3. ALAWYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+3. ALWAYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
 4. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
 5. Prefer secret injection or one-command environment scoping over writing secrets to disk.
 6. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.

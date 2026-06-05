@@ -50,7 +50,7 @@ Check installation: `keeper version`
   - `ksm --help`
 4. Confirm session or auth state before any secret read.
 5. Check login status using whoami, if not logged in, complete login process and then continue rest flow.
-6. ALAWYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+6. ALWAYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
 7. For any record management operations or record sharing operation, VERIFY if the record is a Classic record type or New record type.
 8. If a record or folder type is NEW or Nested Sub Folder the use nsf commands. Refer `references/nested-sub-folders.md` for nsf commands.
 9. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
@@ -125,7 +125,7 @@ My Vault> get <RECORD_UID>        # Show full record details
 ### Record Management
 
 1. While create a new record ALWAYS ask user "Use Classic Permission Model?"
-2. If user says Yes, the use classic commands, Otherwise use nsf or Nested sub folder commands.
+2. If user says Yes, then use classic commands, Otherwise use nsf or Nested sub folder commands.
 3. Classic workflows supports record-add command and new workflows support Nested Sub Folder Commands.
 
 ## Classic Commands
@@ -270,6 +270,7 @@ echo "list" | keeper --batch-mode --user admin@co.com
 - Use `references/enterprise-mgmt.md` for enterprise management scenarios and commands.
 - Use `references/pam-commands.md` for privileged access management or KeeperPAM functionalities.
 - Use `references/msp-management.md` for commands specific to Managed Service Provider (MSP) tenants
+- 
 
 ## Guardrails
 

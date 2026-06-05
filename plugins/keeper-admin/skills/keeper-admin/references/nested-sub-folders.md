@@ -21,7 +21,7 @@ My Vault> nsf-share-record          # Grant, update, revoke, or transfer ownersh
 My Vault> nsf-record-permission     # Bulk-update record sharing permissions for every record inside a folder
 ```
 
-Use -h to know exact syntac and working for each sub-commands.
+Use -h to know exact syntax and working for each sub-commands.
 
-Refer [keeper official EPM documentation](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference/endpoint-privilege-manager-commands) instead of guessing a particular command.
+Refer [keeper official NSF command documentation](https://docs.keeper.io/keeperpam/commander-cli/command-reference/nested-shared-folder) instead of guessing a particular command.
 
