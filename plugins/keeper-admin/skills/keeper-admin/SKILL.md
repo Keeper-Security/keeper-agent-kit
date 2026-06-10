@@ -50,11 +50,13 @@ Check installation: `keeper version`
   - `ksm --help`
 4. Confirm session or auth state before any secret read.
 5. Check login status using whoami, if not logged in, complete login process and then continue rest flow.
-6. ALAWYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
-7. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
-8. Prefer secret injection or one-command environment scoping over writing secrets to disk.
-9. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
-10. ALWAYS ask confirmation from users for any delete operations.
+6. ALWAYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+7. For any record management operations or record sharing operation, VERIFY if the record is a Classic record type or New record type.
+8. If a record or folder type is NEW or Nested Sub Folder the use nsf commands. Refer `references/nested-sub-folders.md` for nsf commands.
+9. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
+10. Prefer secret injection or one-command environment scoping over writing secrets to disk.
+11. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
+12. ALWAYS ask confirmation from users for any delete operations.
 
 
 ## REQUIRED tmux session
@@ -122,12 +124,18 @@ My Vault> get <RECORD_UID>        # Show full record details
 
 ### Record Management
 
+1. While create a new record ALWAYS ask user "Use Classic Permission Model?"
+2. If user says Yes, then use classic commands, Otherwise use nsf or Nested sub folder commands.
+3. Classic workflows supports record-add command and new workflows support Nested Sub Folder Commands.
+
+## Classic Commands
+
 ```bash
-My Vault> add --record-type login --title "New Record" \
+My Vault> record-add --record-type login --title "New Record" \
   --field login=admin
 # Set passwords and other sensitive fields via interactive prompts, or supply values only from the user’s secure input—never embed sample secrets in commands.
 
-My Vault> edit <RECORD_UID>
+My Vault> record-update -r <RECORD_UID>
 # Or non-interactive field updates for non-secret fields only, e.g. --field login=newuser
 
 My Vault> rm <RECORD_UID>
@@ -135,8 +143,16 @@ My Vault> rm <RECORD_UID>
 My Vault> record-history <RECORD_UID>
 ```
 
-### Sharing
+## Sharing Workflow
 
+1. ALWAYS get record details and check if the record or folder type is Classic or nested sub folder type.
+2. IF record or folder type is nested sub folder then use nsf commands from references. Otherwise use the classic commands.
+3. ALWAYS check if the given record or folder type is PamUser or PAM folder that stores PamUser type records, If YES then ask use if they want to auto rotate the password after a certain time or if access time provided is over.
+4. ALWAYS ask user for setting up a expiration time while sharing a record or folder.
+5. Use -h flag for the supporting flags.
+6. MUST ask users inputs for permission flag, Once confirmed, then only share a record, Otherwise DONT proceed ahead.
+
+## Classic Commands
 ```bash
 My Vault> share-record -e user@company.com -a grant -u <RECORD_UID>
 My Vault> share-folder -e user@company.com -a grant -u <FOLDER_UID>
@@ -254,6 +270,7 @@ echo "list" | keeper --batch-mode --user admin@co.com
 - Use `references/enterprise-mgmt.md` for enterprise management scenarios and commands.
 - Use `references/pam-commands.md` for privileged access management or KeeperPAM functionalities.
 - Use `references/msp-management.md` for commands specific to Managed Service Provider (MSP) tenants
+- 
 
 ## Guardrails
 

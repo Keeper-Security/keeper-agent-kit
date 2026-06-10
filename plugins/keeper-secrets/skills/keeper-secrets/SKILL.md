@@ -37,6 +37,43 @@ Application + Client Device authentication with one-time access tokens.
 
 Check installation: `ksm version`
 
+## Workflow
+1. ALWAYS use dedicated TMUX session for all KSM related operations.
+2. While configuring KSM for first time, pre-configure the KSM init command, Ask use input for one time token and inject that in pre-configured tmux session.
+3. ALWAYS ask the user inputs for REQUIRED fields, DONT GUESS REQUIRED fields.
+4. Search or inspect metadata first, then retrieve only the exact requested field, do not expose any sensitive data.
+5. Prefer secret injection or one-command environment scoping over writing secrets to disk.
+6. If syntax differs from expectation, fall back to `--help` and Keeper docs immediately.
+7. ALWAYS ask confirmation from users for any delete operations.
+
+## REQUIRED tmux session
+
+The shell tool uses a fresh TTY per command. To preserve Keeper interactive context, authentication state, and MFA prompts, run interactive Keeper commands or secrets manager command inside a dedicated tmux session.
+
+
+Example pattern:
+
+```bash
+SOCKET_DIR="${TMUX_SOCKET_DIR:-${TMPDIR:-/tmp}/keeper-tmux-sockets}"
+mkdir -p "$SOCKET_DIR"
+SOCKET="$SOCKET_DIR/keeper-commander.sock"
+SESSION="keeper-auth-$(date +%Y%m%d-%H%M%S)"
+
+tmux -S "$SOCKET" new -d -s "$SESSION" -n shell
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 -- "ksm shell || bash" Enter
+tmux -S "$SOCKET" capture-pane -p -J -t "$SESSION":0.0 -S -120
+```
+
+Then drive the session carefully:
+
+```bash
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 -l -- "whoami"
+tmux -S "$SOCKET" send-keys -t "$SESSION":0.0 Enter
+tmux -S "$SOCKET" capture-pane -p -J -t "$SESSION":0.0 -S -120
+```
+
+Kill the tmux session when the task is complete unless the user wants a persistent Keeper shell.
+
 ## Authentication & Profile Setup
 
 KSM uses profile-based authentication. Credentials are stored in OS-native
