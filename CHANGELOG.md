@@ -4,6 +4,13 @@ All notable changes to **Keeper Security Agent Kit** are documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/0.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0](https://github.com/Keeper-Security/keeper-agent-kit/compare/v1.1.0...v1.2.0) (2026-06-10)
+
+
+### Features
+
+* Nested sub folder feature enhancement ([#11](https://github.com/Keeper-Security/keeper-agent-kit/issues/11)) ([0c60c85](https://github.com/Keeper-Security/keeper-agent-kit/commit/0c60c859c10d349c7e7fc9c7057908ef5757a0a4))
+
 ## [1.1.0](https://github.com/Keeper-Security/keeper-agent-kit/compare/v1.0.0...v1.1.0) (2026-05-12)
 
 
