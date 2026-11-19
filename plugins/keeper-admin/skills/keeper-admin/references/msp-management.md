@@ -1,24 +1,24 @@
-# MSP Management Commands
+# MSP and Managed Company Context
 
-Commands specific to Managed Service Provider (MSP) tenants
+Read [safety.md](safety.md). MSP identity, managed-company identity, license changes,
+and tenant administration have different permissions. Never act across MCs just
+because the account can list them.
 
-Command, Explanation
-msp-info or mi, Display MSP details
-msp-down or md, Refresh local MSP data from server
-msp-add or ma, Creates Managed Company
-msp-remove or mrm, Removes Managed Company
-msp-update or mu, Modify Managed Company licenses
-msp-billing-report, Generate MSP Billing Reports
-msp-legacy-report, Generate MSP Legacy Report
-switch-to-mc, Switch context to run commands as a managed company
-switch-to-msp, Switch context to run commands as MSP
-msp-convert-node, Convert an enterprise node into a managed company
-msp-copy-role, Copy role enforcements from MSP to MCs
+## Workflow
 
-Whether using the interactive shell, CLI or JSON config file, Keeper supports the following commands, each command supports additional parameters and options.
-To get help on a particular command, run:
+1. Inspect MSP information and the intended MC using supported read commands.
+2. Resolve the exact MC and delegated rights; do not select the first title match.
+3. Preview the task, license/billing impact, users/resources, and tenant scope.
+4. Use supported `switch-to-mc` / `switch-to-msp` context commands where applicable.
+   Verify context before each change and return to MSP when finished.
+5. Inspect per-item outcomes. MC removal, transfers, bulk role copying, and license
+   reductions require explicit confirmation and an approved recovery plan.
 
-`help <command>`
+Inspect installed help for `msp-info`, `msp-down`, `msp-add`, `msp-update`,
+`msp-remove`, and reporting commands. Do not assume aliases, JSON schemas, or
+identical capabilities across SDKs/MCP. Discovered MCP tools must explicitly
+support the required tenant context; never infer cross-MC administration support.
 
-Refer [keeper official MSP Management documentation](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference/msp-management-commands) instead of guessing a particular command.
+## Source
 
+[MSP commands](https://docs.keeper.io/keeperpam/commander-cli/command-reference/msp-management-commands)

@@ -1,0 +1,6 @@
+# Offline validation and parser/API checks; no Keeper account is required.
+-r requirements-upstream.txt
+PyYAML==6.0.3
+rumdl==0.3.5
+keeper-secrets-manager-cli==1.5.0
+keeper-secrets-manager-core==17.3.0

@@ -1,0 +1,9 @@
+{
+  "name": "keeper-developer",
+  "version": "1.2.0",
+  "description": "Developer Center, Property Files, SSH Agent, and local development workflows.",
+  "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+  "license": "Apache-2.0",
+  "keywords": ["keeper", "developer-center", "property-files", "ssh-agent"],
+  "repository": "https://github.com/Keeper-Security/keeper-agent-kit"
+}

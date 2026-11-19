@@ -1,0 +1,9 @@
+{
+  "name": "keeper-mcp",
+  "version": "1.2.0",
+  "description": "Governed Keeper Desktop MCP setup, consent, scope, and safe AI agent operations.",
+  "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+  "license": "Apache-2.0",
+  "keywords": ["keeper", "mcp", "ai-agent-access", "governance"],
+  "repository": "https://github.com/Keeper-Security/keeper-agent-kit"
+}

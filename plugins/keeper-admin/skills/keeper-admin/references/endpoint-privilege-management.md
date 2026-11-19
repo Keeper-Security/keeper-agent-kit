@@ -1,36 +1,19 @@
-# Endpoint Privilege Manager Commands
+# Keeper Endpoint Privilege Manager
 
-Commands that control Keeper Endpoint Privilege Manager (KEPM) capabilities
+Read [safety.md](safety.md). KEPM is endpoint privilege management, not a PAM
+Gateway or generic Vault policy. Verify KEPM licensing, target platform, delegated
+rights, and the installed CLI/SDK surface before making changes.
 
-```
-My Vault> epm -h                                                       
-epm command [--options]
+Commander documentation describes an `epm` surface; historical source/SDKs may use
+`pedm` aliases. Inspect installed help instead of guessing `kepm`/`epm`/`pedm`
+interchangeability. Supported areas include deployment, agents, policies,
+collections, provisioning, and approvals, depending on version.
 
-Command     Description
-----------  ------------------------------------
-sync-down   Sync down EPM data from the backend
-deployment  Manage EPM deployments 
-agent       Manage EPM agents
-policy      Manage EPM policies
-collection  Manage EPM collections 
-scim        Sync EPM user/group collections from AD or AzureAD
-approval    Manage EPM requests and approvals
-```
+For a policy change, show the target devices/users, filters, action, inheritance,
+and proposed diff. For approval, verify the requester's identity, requested action,
+target, duration, and policy. Do not approve all pending requests or elevate the
+agent to troubleshoot a denial. Verify safe status and audit metadata afterward.
 
-Use epm sync-down to get latest approvals if a approval is not found.
+## Source
 
-## EPM Sub commands
-
-```
-sync-down
-deployment
-agent
-policy
-collection
-approval
-scim
-```
-Use -h to know exact syntax and working for each sub-commands.
-
-Refer [keeper official EPM documentation](https://docs.keeper.io/en/keeperpam/commander-cli/command-reference/endpoint-privilege-manager-commands) instead of guessing a particular command.
-
+[KEPM commands](https://docs.keeper.io/keeperpam/commander-cli/command-reference/endpoint-privilege-manager-commands)

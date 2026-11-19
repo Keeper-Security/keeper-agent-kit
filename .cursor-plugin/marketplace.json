@@ -5,10 +5,10 @@
     "email": "commanders@keepersecurity.com"
   },
   "metadata": {
-    "description": "Keeper Security Agent Kit - KSM CLI, Commander, and setup skills for Claude Code",
+    "description": "Keeper developer tools, governed MCP, secrets, SDKs, integrations, administration, and PAM skills",
     "version": "1.2.0",
-    "homepage": "https://github.com/Keeper-Security/agent-kit",
-    "repository": "https://github.com/Keeper-Security/agent-kit",
+    "homepage": "https://github.com/Keeper-Security/keeper-agent-kit",
+    "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
     "license": "Apache-2.0",
     "support": {
       "email": "commanders@keepersecurity.com",
@@ -19,7 +19,7 @@
     {
       "name": "keeper-admin",
       "source": "./plugins/keeper-admin",
-      "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Commander CLI",
+      "description": "Manage Keeper Vault, enterprise, MSP, KEPM, KSM applications, and Commander Service Mode with scoped permissions.",
       "version": "1.2.0",
       "author": {
         "name": "Keeper Security",
@@ -61,7 +61,7 @@
     {
       "name": "keeper-setup",
       "source": "./plugins/keeper-setup",
-      "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit",
+      "description": "Choose and configure the Keeper interface appropriate to the task, including Desktop MCP, developer tools, CLIs, SDKs, and integrations.",
       "version": "1.2.0",
       "author": {
         "name": "Keeper Security",
@@ -76,6 +76,56 @@
         "install",
         "configuration"
       ]
+    },
+    {
+      "name": "keeper-developer",
+      "source": "./plugins/keeper-developer",
+      "description": "Developer Center, Property Files, SSH Agent, and local development workflows.",
+      "version": "1.2.0",
+      "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+      "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
+      "license": "Apache-2.0",
+      "keywords": ["keeper", "developer-center", "property-files", "ssh-agent"]
+    },
+    {
+      "name": "keeper-mcp",
+      "source": "./plugins/keeper-mcp",
+      "description": "Governed Keeper Desktop MCP setup, consent, scope, and safe AI agent operations.",
+      "version": "1.2.0",
+      "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+      "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
+      "license": "Apache-2.0",
+      "keywords": ["keeper", "mcp", "ai-agent-access", "governance"]
+    },
+    {
+      "name": "keeper-sdk",
+      "source": "./plugins/keeper-sdk",
+      "description": "KSM and Vault/Commander SDK selection and safe application integration.",
+      "version": "1.2.0",
+      "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+      "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
+      "license": "Apache-2.0",
+      "keywords": ["keeper", "sdk", "python", "typescript", "ksm"]
+    },
+    {
+      "name": "keeper-integrations",
+      "source": "./plugins/keeper-integrations",
+      "description": "CI/CD, Kubernetes, Terraform, Ansible, cloud sync, and enterprise integration workflows.",
+      "version": "1.2.0",
+      "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+      "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
+      "license": "Apache-2.0",
+      "keywords": ["keeper", "integrations", "kubernetes", "terraform", "uss"]
+    },
+    {
+      "name": "keeper-pam",
+      "source": "./plugins/keeper-pam",
+      "description": "KeeperPAM JIT access, queries, sessions, tunnels, and credential rotation.",
+      "version": "1.2.0",
+      "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+      "repository": "https://github.com/Keeper-Security/keeper-agent-kit",
+      "license": "Apache-2.0",
+      "keywords": ["keeper", "pam", "jit", "rotation", "database"]
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "keeper-setup",
   "version": "1.2.0",
-  "description": "Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit, including profiles and authentication.",
+  "description": "Choose and configure the Keeper interface appropriate to the task, including Desktop MCP, developer tools, CLIs, SDKs, and integrations.",
   "author": {
     "name": "Keeper Security",
     "email": "commanders@keepersecurity.com"

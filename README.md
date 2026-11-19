@@ -1,69 +1,85 @@
-# Keeper Security Agent Kit for AI Agents
+# Keeper Security Agent Kit
 
-Teach AI coding agents to use **Keeper Secrets Manager (KSM)** and **Keeper Commander** from the terminal: retrieve and inject secrets, manage vaults, and run enterprise admin workflows-without putting credentials in chat or source control.
+Teach AI coding assistants to choose and safely use Keeper's developer tools,
+governed MCP capabilities, Secrets Manager, SDKs, integrations, and administration
+workflows. Skills are instructions, not an MCP server or a permission grant.
+Installing this kit does not install Keeper software or authorize vault access.
 
----
+## Choose the right capability
 
-## What you get
-
-| Plugin | Use it for | CLI |
+| Your task | Start with | Interface |
 | --- | --- | --- |
-| [keeper-secrets](plugins/keeper-secrets/skills/keeper-secrets/SKILL.md) | App secrets, `ksm exec`, templates, CI/CD | `ksm` |
-| [keeper-admin](plugins/keeper-admin/skills/keeper-admin/SKILL.md) | Users, teams, PAM, enterprise vault ops | `keeper` |
-| [keeper-setup](plugins/keeper-setup/skills/keeper-setup/SKILL.md) | Install CLIs, profiles, first-time setup | Both |
+| Choose tools, install, authenticate, troubleshoot setup | [keeper-setup](plugins/keeper-setup/skills/keeper-setup/SKILL.md) | Task-specific onboarding |
+| Give a local AI agent scoped Keeper access | [keeper-mcp](plugins/keeper-mcp/skills/keeper-mcp/SKILL.md) | Keeper Desktop MCP |
+| Replace local plaintext configuration, configure developer tools | [keeper-developer](plugins/keeper-developer/skills/keeper-developer/SKILL.md) | Developer Center, Property Files, SSH Agent |
+| Inject application secrets from a shell | [keeper-secrets](plugins/keeper-secrets/skills/keeper-secrets/SKILL.md) | KSM CLI (`ksm`) |
+| Integrate Keeper into application code | [keeper-sdk](plugins/keeper-sdk/skills/keeper-sdk/SKILL.md) | KSM or Vault/Commander SDK |
+| Configure CI/CD, Kubernetes, Terraform, cloud sync, or enterprise integrations | [keeper-integrations](plugins/keeper-integrations/skills/keeper-integrations/SKILL.md) | Purpose-built integrations |
+| Manage users, teams, roles, MSP tenants, Vault, or KEPM | [keeper-admin](plugins/keeper-admin/skills/keeper-admin/SKILL.md) | Commander (`keeper`), supported admin interfaces |
+| Request privileged access, query databases, launch sessions, rotate credentials | [keeper-pam](plugins/keeper-pam/skills/keeper-pam/SKILL.md) | KeeperPAM and authorized MCP/CLI workflows |
 
----
+Use supported, authorized MCP tools for local agent operations when appropriate.
+Use KSM application/device access for unattended workloads. A denied MCP operation
+is **not** permission to fall back to a CLI or broaden access.
+
+### Availability
+
+Developer Center and Property Files are documented as **Preview for Vault 18.7**
+as of November 18, 2026. Preview, beta, operating-system support, product versions,
+licenses, and policy settings vary. Discover actual tools and permissions; never
+infer availability from an installation or a documentation screenshot.
+See the [compatibility matrix](docs/compatibility.md) for verification boundaries.
 
 ## Prerequisites
 
-- A [Keeper Security](https://keepersecurity.com) account
-- [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) (plugin: `keeper-secrets`)
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) (plugin: `keeper-admin`)
-- Python 3.10+
-- Linux, Windows, Mac OS
+Install only what your task needs:
 
-The `keeper-setup` skill will guide you through first-time setup if you don't have the CLIs installed.
-
----
+- **Desktop MCP / Property Files:** supported Keeper Desktop version, signed-in
+  session, user approval, and permitted capabilities. Do not assume Linux support.
+- **KSM:** an application with scoped record/folder access and a bound device
+  configuration. CLI installation can use Python or an official installer.
+- **Commander / SDKs:** supported runtime or binary and an appropriately scoped
+  account. Administration requires the corresponding delegated permissions.
+- **KeeperPAM / integrations:** product-specific licenses, connectivity, resources,
+  and configuration as documented. An integration catalog card installs nothing.
 
 ## Installation
 
-To install the Keeper Security Agent Kit, pick **one** path.
+Pick one installation path. Install the skills needed for your workflow, or all
+eight for broad coverage. Existing `keeper-secrets`, `keeper-admin`, and
+`keeper-setup` names remain compatible.
 
 ### Claude Code Marketplace
 
-```bash
+```text
 /plugin marketplace add Keeper-Security/keeper-agent-kit
-/plugin install keeper-secrets@keeper-security
+/plugin install keeper-setup@keeper-security
+/plugin install keeper-mcp@keeper-security
+/plugin install keeper-developer@keeper-security
 ```
 
-### Any agent via Vercel Skills CLI
+Install other plugins from the table above using the same naming convention.
+
+### Skills CLI
 
 ```bash
-# Add the Keeper Security Agent Kit
 npx skills add Keeper-Security/keeper-agent-kit
-```
-
-Combine with optional flags to target a specific agent or install globally:
-
-```bash
-# target agent: cursor
+# Optional: select a client or a user-wide installation
 npx skills add Keeper-Security/keeper-agent-kit -a cursor
-# target agent: claude-code
-npx skills add Keeper-Security/keeper-agent-kit -a claude-code
-# target agent: codex
 npx skills add Keeper-Security/keeper-agent-kit -a codex
-# global install
 npx skills add Keeper-Security/keeper-agent-kit -g
 ```
 
 ### Manual installation
 
-Clone the repo, then copy the plugin folders to **your** agent’s skills directory (create it if needed):
+Copy the **skill directories**, including their references and examples, not the
+outer plugin directories. Review the source and use a reviewed release/ref.
 
 ```bash
 git clone https://github.com/Keeper-Security/keeper-agent-kit
 cd keeper-agent-kit
+mkdir -p ~/.claude/skills
+cp -r plugins/*/skills/* ~/.claude/skills/
 ```
 
 | Agent | Typical skills path |
@@ -73,55 +89,52 @@ cd keeper-agent-kit
 | Codex | `~/.codex/skills/` |
 | GitHub Copilot | `~/.github/skills/` |
 
-#### Example manual installation for Claude Code
-
->NOTE: You may also create this at the project level by using `./.claude/skills/` instead of `~/.claude/skills/`.
-
-```bash
-mkdir -p ~/.claude/skills
-cp -r plugins/*/skills/* ~/.claude/skills/
-ls ~/.claude/skills
-```
-
-Repeat for each agent you use; paths differ per product.
+Other clients, including OpenCode and OpenClaw, may support skills; follow the
+client's current installation instructions rather than assuming these paths.
+Client skill support and MCP support are separate prerequisites.
 
 ## Usage
 
-In the agent, try prompts like: *“Help me inject secrets from Keeper into my app”* (should lean on `keeper-secrets`) or *“How do I set up KSM?”* (`keeper-setup`).
+- "Set up Keeper MCP with read-only access to my development folder."
+- "Help me replace my local .env with a Keeper Property File without reading it into chat."
+- "Integrate KSM into my Python app; keep credentials out of logs."
+- "Choose between the Kubernetes Injector and External Secrets Operator."
+- "Query this PAM database read-only and close access when finished."
+- "Preview a team membership change before applying it."
 
-For more structured smoke tests, see [TEST_PROMPTS.md](TEST_PROMPTS.md).
-
-## Uninstall
-
-Remove the skill directories from that agent’s `skills` folder, or with Vercel Skills: `npx skills remove keeper-secrets` (and the other two). To remove the Keeper CLIs from your machine, follow the uninstall guidance in the [KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) and [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) docs.
-
----
-
-## Documentation
-
-- **[KSM CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview)** - install, profiles, commands  
-- **[Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview)** - install, shell, admin commands  
-- **[Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation)** - `keeper://` references for secrets  
-- **[Issues & features](https://github.com/Keeper-Security/keeper-agent-kit/issues)**
-- **[Keeper Security Support](https://keepersecurity.com/support)**
-- **[Docs](https://docs.keeper.io)**
-
----
+See [TEST_PROMPTS.md](TEST_PROMPTS.md) for routing and safety evaluations.
 
 ## Security
 
-Security is a top priority. The **[SECURITY.md](SECURITY.md)** file contains information on how to report vulnerabilities.
+Never paste credentials into the AI conversation or pass resolved secrets in
+command arguments. Confirm high-risk changes, respect policy denials, and scope
+access to the task. Secret values can still leak through an authorized consuming
+process, application logs, query results, generated files, or Terraform state.
+See [SECURITY.md](SECURITY.md) for vulnerability reporting.
+
+## Documentation
+
+- [Developer Center](https://docs.keeper.io/keeperpam/developer-and-mcp/developer-center)
+- [Keeper MCP setup](https://docs.keeper.io/keeperpam/developer-and-mcp/ai-agent-access/keeper-mcp-setup)
+- [KSM SDKs](https://docs.keeper.io/keeperpam/secrets-manager/developer-sdk-library)
+- [Integrations](https://docs.keeper.io/keeperpam/secrets-manager/integrations)
+- [Commander](https://docs.keeper.io/keeperpam/commander-cli/overview)
+- [Keeper documentation index](https://docs.keeper.io/llms.txt)
+- [Compatibility and maintenance](docs/compatibility.md)
+
+## Uninstall
+
+Remove the installed `keeper-*` skill directories or use your client's plugin
+uninstaller / Skills CLI. This does not uninstall Keeper software or revoke
+devices, persistent sessions, MCP approvals, or mounted destinations. Review and
+revoke those separately when no longer needed.
 
 ## Contributing
 
-We welcome issues and pull requests.
-
-1. Check [existing issues](https://github.com/Keeper-Security/keeper-agent-kit/issues) before filing a new one.  
-2. For changes: fork, branch, keep edits focused; follow [CONTRIBUTING.md](CONTRIBUTING.md).
-3. Pull requests should describe **what** changed and **why**, and note how you tested.
-
----
+See [CONTRIBUTING.md](CONTRIBUTING.md). Run validation before submitting changes;
+GitHub Actions also validates packages, examples, and regression checks.
+Report bugs and requests in [GitHub Issues](https://github.com/Keeper-Security/keeper-agent-kit/issues).
 
 ## License
 
-Licensed is provided in the **[LICENSE](LICENSE.md)** file.
+See [LICENSE.md](LICENSE.md).

@@ -19,14 +19,14 @@ repos:
         entry: task fmt
         pass_filenames: false
 
-      # Plugin manifests (Claude/Cursor), marketplaces, skills, triggers, docs (scripts/validate.sh)
+      # Plugin manifests, safety, versions, examples, and relative links
       - id: plugin-ci
         name: Plugin and skill validation
         stages: [pre-commit]
         language: system
         entry: task validate
         pass_filenames: false
-        files: ^(plugins/|\.claude-plugin/|\.cursor-plugin/|scripts/validate\.sh|Taskfile\.yaml|README\.md|SECURITY\.md|CONTRIBUTING\.md|LICENSE\.md)
+        files: ^(plugins/|docs/|tests/|\.claude-plugin/|\.cursor-plugin/|scripts/validate[_-]|requirements-dev\.txt|Taskfile\.yaml|README\.md|TEST_PROMPTS\.md|SECURITY\.md|CONTRIBUTING\.md|LICENSE\.md)
 
   # Standard pre-commit hooks
   - repo: https://github.com/pre-commit/pre-commit-hooks

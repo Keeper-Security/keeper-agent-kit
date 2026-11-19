@@ -1,6 +1,6 @@
 {
   "name": "keeper-admin",
-  "description": "Manage Keeper Vault, enterprise administration, PAM, and privileged access using Keeper Commander CLI (keeper).",
+  "description": "Manage Keeper Vault, enterprise, MSP, KEPM, KSM applications, and Commander Service Mode with scoped permissions.",
   "version": "1.2.0",
   "author": {
     "name": "Keeper Security",

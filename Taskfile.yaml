@@ -7,7 +7,7 @@ tasks:
       - task --list
 
   act:
-    desc: Run act on all workflows via scripts/act-all.sh (Docker + act)
+    desc: Smoke-test Linux validation workflows (Docker + act; no release/API actions)
     cmds:
       - ./scripts/act-all.sh
 
@@ -15,6 +15,16 @@ tasks:
     desc: Format Markdown
     cmds:
       - rumdl check --fix .
+
+  check:
+    desc: Check Markdown without modifying files
+    cmds:
+      - rumdl check .
+
+  test:
+    desc: Run offline Python regression and SDK/parser tests
+    cmds:
+      - '{{default "python3" .PYTHON}} -m unittest discover -s tests -v'
 
   install:
     desc: Install dependencies
@@ -27,6 +37,6 @@ tasks:
       - if [ -z "${SKIP_PREK_INSTALL:-}" ]; then prek install; else echo "Skipping prek install"; fi
 
   validate:
-    desc: Run full validation on plugins
+    desc: Validate plugins, safety, versions, and relative links (Python dev dependencies required)
     cmds:
       - ./scripts/validate-plugins.sh

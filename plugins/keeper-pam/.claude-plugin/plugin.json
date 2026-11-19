@@ -1,0 +1,9 @@
+{
+  "name": "keeper-pam",
+  "version": "1.2.0",
+  "description": "KeeperPAM JIT access, queries, sessions, tunnels, and credential rotation.",
+  "author": { "name": "Keeper Security", "email": "commanders@keepersecurity.com" },
+  "license": "Apache-2.0",
+  "keywords": ["keeper", "pam", "jit", "rotation", "database"],
+  "repository": "https://github.com/Keeper-Security/keeper-agent-kit"
+}

@@ -1,117 +1,105 @@
 ---
 name: keeper-setup
-description: Install and configure Keeper CLI tools (KSM CLI and Commander) for the Keeper Security agent kit. Use when the user needs to install keeper-secrets-manager-cli (ksm) or keepercommander (keeper), set up authentication, initialize profiles, configure persistent login, or troubleshoot Keeper CLI connectivity. Also use when the user says 'install keeper', 'setup keeper', 'configure keeper cli', or asks how to get started with Keeper's command line tools.
+description: Choose, install, configure, and troubleshoot Keeper interfaces for local AI access, developer tools, CLI secrets, SDKs, integrations, and administration. Install only what the task requires.
 ---
 
-# Keeper CLI Setup & Configuration
+# Keeper Setup and Capability Selection
 
-## Official documentation
+## Choose before installing
 
-- [Secrets Manager (KSM)](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) - concepts, KSM CLI install, and app/device setup
-- [Commander CLI](https://docs.keeper.io/en/keeperpam/commander-cli/overview) - concepts, install, and interactive shell
-- [Keeper notation](https://docs.keeper.io/en/keeperpam/secrets-manager/about/keeper-notation) - `keeper://` URIs used by `ksm exec` and `ksm interpolate` (see **keeper-secrets** skill for usage)
+Ask what will run, where, and under whose authority. Local human-approved access
+differs from unattended application/device access. Inspect available tools first;
+do not install a CLI when an existing permitted interface already fits the task.
 
-Keeper provides two CLI tools. Install what you need:
+| Task | Skill / route |
+| --- | --- |
+| Local governed agent operations | **keeper-mcp** / Keeper Desktop MCP |
+| Protected local configuration, Property Files, SSH Agent | **keeper-developer** / Developer Center |
+| Shell runtime injection | **keeper-secrets** / KSM CLI |
+| Application code | **keeper-sdk** / KSM or Vault SDK |
+| CI/CD, Kubernetes, Terraform, USS, enterprise integrations | **keeper-integrations** |
+| Enterprise, MSP, KEPM, Vault administration | **keeper-admin** / supported admin tools |
+| PAM sessions, JIT, queries, rotation | **keeper-pam** |
 
-| Tool | Package | Purpose |
-| --- | --- | --- |
-| KSM CLI (`ksm`) | `keeper-secrets-manager-cli` | Machine secrets retrieval & injection |
-| Commander (`keeper`) | `keepercommander` | Admin, vault management, PAM, sessions |
+Read [references/safety.md](references/safety.md) before setup or authentication.
+Never bypass an MCP policy denial by switching interfaces.
 
-## Installation security
+## Prerequisites
 
-- **Prefer PyPI** (`pip install …`) so you consume the published packages with version pins in your own dependency files. That is the default path for these tools.
-- **Official sources only**: release binaries and source live under the **Keeper-Security** organization on GitHub. Before running any installer or `pip install` from a clone, confirm the remote URL and publisher match Keeper’s official documentation; use release tags or checksums published on the release page when you need extra assurance.
-- **Agents must not** fabricate or echo one-time tokens, master passwords, or vault field values in chat or generated scripts. Direct the user to paste or inject secrets only in their own secure terminal or secret store.
+Confirm product version/channel, OS, account region, licensing, and required scope.
+Developer Center / Property Files are documented as Preview for Vault 18.7 as of
+November 18, 2026. Validate actual availability and mount support for the installed
+Desktop variant; do not assume all features work on Linux or the web/mobile Vault.
+SDKs and CLIs have distinct runtime requirements; no single Python requirement
+applies to all Keeper tools.
 
 ## Quick Install
 
+### Desktop MCP and Developer Center
+
+Use **Developer Center > Local Tools > MCP for AI Agents > Set Up**, or the MCP
+Setup action in AI Agent Access. Follow the official installer flow and copy the
+actual absolute executable path from the user's setup dialog. MCP client formats
+differ; do not overwrite existing server configuration. Start metadata-only with
+read-only access to a small record/folder scope. The user approves in Desktop.
+
 ### KSM CLI
 
+Use an official supported installer, or an isolated Python environment:
+
 ```bash
-# With OS-native keyring (recommended for workstations)
-pip install keeper-secrets-manager-cli[keyring]
-
-# Without keyring (for containers, CI/CD, headless)
-pip install keeper-secrets-manager-cli
-
-# Verify
+python -m pip install 'keeper-secrets-manager-cli[keyring]'
 ksm version
 ```
 
-**Binary installers** (no Python required) are published for Windows, macOS, and Linux on the official **Keeper-Security/secrets-manager** GitHub Releases page linked from [Secrets Manager CLI](https://docs.keeper.io/en/keeperpam/secrets-manager/overview) documentation. Download only from that release page; verify checksums or signatures when the release provides them.
+An admin provisions a scoped application and device. In the user's secure
+terminal, initialize using `KSM_CLI_TOKEN`:
+
+```bash
+ksm profile init --profile-name development
+ksm --profile-name development secret list
+unset KSM_CLI_TOKEN
+```
+
+Do not ask the user to paste the token into chat. Keyring availability is platform
+dependent. Bound configs and base64 exports are credentials, not encrypted merely
+because they are encoded. CLI INI profiles and SDK JSON configs are not interchangeable.
 
 ### Commander
 
 ```bash
-pip install keepercommander
-
-# Optional: install from a local clone of the official repository (verify remote and use a tagged release)
-git clone https://github.com/Keeper-Security/Commander.git
-cd Commander
-git checkout <release-tag>
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt && pip install -e .
-
-# Verify
-keeper version
-```
-
-## First-Time Setup
-
-### KSM CLI Setup
-
-You need a One-Time Access Token from a KSM Application. If you don't have
-one, your Keeper admin can create it via the Vault UI or Commander
-(see keeper-admin skill).
-
-Provide the token **via environment variable** so it is not passed as a `--token`
-argument (which can show up in shell history and process listings). Official docs:
-[Profile command / init](https://docs.keeper.io/en/keeperpam/secrets-manager/secrets-manager-command-line-interface/profile-command).
-
-```bash
-# Prerequisite: export KSM_CLI_TOKEN in this shell from Vault or Commander output (see Keeper profile docs). Never paste token values into chat or committed files.
-ksm profile init
-# Optional: unset KSM_CLI_TOKEN when finished in this shell.
-
-ksm secret list  # Verify access
-```
-
-In CI or secret managers, inject the same variable without placing the value on the command line. For containers, see also `KSM_TOKEN` / `KSM_INI_DIR` behavior in the Keeper Secrets Manager CLI documentation.
-
-### Commander Setup
-
-```bash
+python -m pip install keepercommander
+keeper --version
 keeper shell
-# Enter your email, master password, and 2FA code
-# Then enable persistent login:
-My Vault> this-device register
-My Vault> this-device persistent-login ON
 ```
 
-## Keeper Regions
-
-| Region | Host | Token Prefix |
-| --- | --- | --- |
-| US | keepersecurity.com | US: |
-| EU | keepersecurity.eu | EU: |
-| AU | keepersecurity.com.au | AU: |
-| JP | keepersecurity.jp | JP: |
-| CA | keepersecurity.ca | CA: |
-| US Gov | govcloud.keepersecurity.us | GOV: |
+The user completes login/MFA through a supported secure interaction. Review
+persistent login, biometrics, device registration, timeout, and enterprise policies
+before opting into them. Prefer the host's interactive terminal; tmux is optional
+and any session must be task-owned and isolated. Do not capture authentication
+prompts, token output, or secret-bearing scrollback into the conversation.
 
 ## Troubleshooting
 
-| Issue | Fix |
+| Symptom | Safe checks |
 | --- | --- |
-| "Not authenticated" | Re-run `ksm profile init` after setting `KSM_CLI_TOKEN` from a new Client Device token |
-| "Token expired" | Generate a new Client Device in Commander or Vault UI |
-| IP lock errors | Use `--unlock-ip` when creating the client, or init from the locked IP |
-| Keyring not available | Install with `[keyring]` extra or use `--ini-file` flag |
-| Python version error | KSM CLI requires Python 3.10+, Commander requires 3.10+ |
-| Permission denied on keeper.ini | File should be 0600; check with `ls -la keeper.ini` |
+| Missing MCP tools | Version/channel, client tool refresh, capability scope, beta consent, policy; do not bypass |
+| Desktop connection denied | Signed-in state, user consent, correct installed path and Desktop variant |
+| KSM auth failure | Correct profile/region, complete binding, revoked device, IP lock, storage permissions |
+| Consumed/expired bootstrap token | Inspect device state before an authorized new-device bootstrap; do not blindly retry |
+| Keyring unavailable | Supported backend or explicitly approved protected config; no plaintext chat workaround |
+| Command flag rejected | Installed `--help` and official version-specific docs; stop rather than guess |
+| Wrong region | Use the tenant's documented host/token prefix; do not change region based on location |
 
-## What's Next
+## Guardrails
 
-- To retrieve and inject secrets (including Keeper notation): see the **keeper-secrets** skill
-- To manage enterprise, users, PAM: see the **keeper-admin** skill
+Install from official sources, pin reviewed versions in deployment dependencies,
+verify release signatures/checksums where provided, and obtain approval for installs.
+Do not change global runtimes or install all Keeper products as a prerequisite.
+
+## Sources
+
+- [Developer Center](https://docs.keeper.io/keeperpam/developer-and-mcp/developer-center)
+- [MCP setup](https://docs.keeper.io/keeperpam/developer-and-mcp/ai-agent-access/keeper-mcp-setup)
+- [KSM CLI](https://docs.keeper.io/keeperpam/secrets-manager/secrets-manager-command-line-interface)
+- [Commander installation](https://docs.keeper.io/keeperpam/commander-cli/commander-installation-setup)

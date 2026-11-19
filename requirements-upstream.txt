@@ -1,0 +1,2 @@
+# Verified public TLS roots; no certificate-verification bypass.
+certifi==2026.10.23
