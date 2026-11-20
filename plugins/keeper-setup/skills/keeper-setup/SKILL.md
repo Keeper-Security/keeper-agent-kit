@@ -24,7 +24,15 @@ Keeper provides two CLI tools. Install what you need:
 - **Official sources only**: release binaries and source live under the **Keeper-Security** organization on GitHub. Before running any installer or `pip install` from a clone, confirm the remote URL and publisher match Keeper’s official documentation; use release tags or checksums published on the release page when you need extra assurance.
 - **Agents must not** fabricate or echo one-time tokens, master passwords, or vault field values in chat or generated scripts. Direct the user to paste or inject secrets only in their own secure terminal or secret store.
 
+## Workflow
+1. Ask user if they want to install Self managed keeper commander (SMK) or Keeper Commander.
+2. Follow quick install guide based on user input.
+
+
 ## Quick Install
+
+### Self Managed Keeper Commander (SMK)
+Follow the guide `references/smk-installation-guide.md` for installing Self managed keeper.
 
 ### KSM CLI
 
