@@ -37,9 +37,12 @@ breadth of vault, enterprise, and PAM operations.
 3. A Keeper account with appropriate admin permissions
 4. Tmux
 
-Check installation: `keeper version`
+Check installation: `keeper version` or `keeper-smk version`
 
+## Important
 
+1. Always ask user if they want to use SMK (Self managed keeper) or Keeper Commander. Based on user input change binary command between `keeper` or `keeper-smk` 
+2. If user chooses `keeper-smk`, verify the installation, If not found then follow skill keeper-setup
 
 ## Workflow
 
